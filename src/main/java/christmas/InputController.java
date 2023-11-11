@@ -28,8 +28,6 @@ public class InputController {
         return dividedCommaList;
     }
 
-
-    // TODO: TootecoMenu record로 만들기
     public List<WootecoMenu> setOrderedMenu(List<String> dividedCommaList){
         return dividedCommaList.stream().map(this::inputToWootechMenu).toList();
     }

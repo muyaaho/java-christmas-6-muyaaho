@@ -39,6 +39,13 @@ public class InputLineTest {
     }
 
     @Test
+    void 메뉴에_없는_음식_입력(){
+        assertMakeObj("마라탕-1");
+        assertMakeObj("피자-1");
+        assertMakeObj("맥주-1");
+    }
+
+    @Test
     void 올바른_입력_사이에_하이픈이_없는_경우(){
         assertMakeObj("티본스테이크1,티본스테이크-1,초코케이크-2,제로콜라-1");
     }
