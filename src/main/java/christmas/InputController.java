@@ -32,14 +32,14 @@ public class InputController {
     private void validateElementBlank(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
         if (dividedHyphen[0].isBlank() || dividedHyphen[1].isBlank()){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            new CustomException("주문");
         }
     }
 
     private void validateNotHypen(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
         if (dividedHyphen.length != 2){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            new CustomException("주문");
         }
     }
 
@@ -48,14 +48,14 @@ public class InputController {
         try{
             parseInt(dividedHyphen[1]);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            new CustomException("주문");
         }
     }
 
     private void validateBlank(List<String> divitedCommaList) {
         int blankCount = (int)divitedCommaList.stream().filter(e -> e.isBlank()).count();
         if (blankCount>0){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            new CustomException("주문");
         }
     }
 
