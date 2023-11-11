@@ -4,9 +4,7 @@ import static java.lang.Integer.parseInt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -16,6 +14,7 @@ public class InputController {
 
     public List<String> seperateComma(String inputLine){
         List<String> dividedCommaList = Arrays.asList(inputLine.split(",", -1));
+//        System.out.println(dividedCommaList);
         dividedCommaList.stream().forEach(s -> {
             validateNotHypen(s);
             validateNumber(s);
@@ -24,6 +23,7 @@ public class InputController {
         });
         validateBlank(dividedCommaList);
         validateDuplicated(dividedCommaList);
+        validateTotalCount(dividedCommaList);
         return dividedCommaList;
     }
 
@@ -32,6 +32,7 @@ public class InputController {
     }
 
 
+    // TODO: 생성자로 변경 만들어도 좋을 듯. 지금 메뉴를 갖고 있는 객체 이제 여기서 계산하는거지
     public WootecoMenu inputToWootechMenu(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
         return new WootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1]));
@@ -46,6 +47,7 @@ public class InputController {
 
     private void validateNotHypen(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
+//        System.out.println(Arrays.toString(dividedHyphen));
         if (dividedHyphen.length != 2){
             new CustomException("주문");
         }
@@ -77,6 +79,13 @@ public class InputController {
     private void validateDuplicated(List<String> dividedCommaList){
         int cnt = dividedCommaList.stream().map(s -> s.split("-")[0]).collect(Collectors.toSet()).size();
         if (cnt != dividedCommaList.size()){
+            new CustomException("주문");
+        }
+    }
+
+    private void validateTotalCount(List<String> dividedCommaList){
+        int cnt = dividedCommaList.stream().map(s -> s.split("-")[1]).mapToInt(Integer::parseInt).sum();
+        if (cnt > 20){
             new CustomException("주문");
         }
     }

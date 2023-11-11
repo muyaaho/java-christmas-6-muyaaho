@@ -66,11 +66,17 @@ public class InputLineTest {
     @Test
     void 모든_요소가_겹치는_경우(){
         assertMakeObj("-,-  1,초코케이크-a,제로콜라-1");
+        assertMakeObj("티본스테이크--1");
     }
 
     @Test
     void 중복된_메뉴가_입력되는_경우() {
         assertMakeObj("티본스테이크-1,티본스테이크-1,초코케이크-2,제로콜라-1");
+    }
+
+    @Test
+    void 음식_갯수가_20개_넘는_경우(){
+        assertMakeObj("티본스테이크-10,초코케이크-10,제로콜라-5");
     }
 
 }
