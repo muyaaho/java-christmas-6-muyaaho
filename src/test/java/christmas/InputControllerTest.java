@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +55,10 @@ public class InputControllerTest {
         assertMenuInput("티본스테이크-,");
     }
 
+    @Test
+    void 콤마를기준으로_나눈값_확인(){
+        assertEquals(Arrays.asList("티본스테이크-1","바비큐립-1","초코케이크-2","제로콜라-1"), inputController.seperateComma("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"));
+    }
 
 
 }

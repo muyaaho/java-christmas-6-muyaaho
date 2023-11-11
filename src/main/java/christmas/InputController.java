@@ -2,17 +2,20 @@ package christmas;
 
 import static java.lang.Integer.parseInt;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.PatternSyntaxException;
 import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class InputController {
 
-    public void checkHyhpen(String input){
-
+    public List<String> seperateComma(String input){
+        return Arrays.asList(input.split(","));
     }
 
-    public WootecoMenu inputToWootechMenu(String input){
-        String[] splitInput = input.split("-");
+
+    public WootecoMenu inputToWootechMenu(String seperatedInput){
+        String[] splitInput = seperatedInput.split("-");
         validateNotHypen(splitInput);
         validateNumber(splitInput[1]);
         return new WootecoMenu(splitInput[0], parseInt(splitInput[1]));
