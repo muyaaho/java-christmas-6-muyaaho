@@ -49,4 +49,9 @@ public class DividedInputTest {
         assertOneInput("티본스테이크-,");
     }
 
+    @Test
+    void 메뉴에_없는_음식이_들어올_경우(){
+        assertOneInput("마라탕-1");
+    }
+
 }
