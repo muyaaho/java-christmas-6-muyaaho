@@ -20,6 +20,7 @@ public class InputController {
             validateNumber(s);
             validateElementBlank(s);
             validateInMenu(s);
+            validateZero(s);
         });
         validateBlank(dividedCommaList);
         validateDuplicated(dividedCommaList);
@@ -27,6 +28,8 @@ public class InputController {
         return dividedCommaList;
     }
 
+
+    // TODO: TootecoMenu record로 만들기
     public List<WootecoMenu> setOrderedMenu(List<String> dividedCommaList){
         return dividedCommaList.stream().map(this::inputToWootechMenu).toList();
     }
@@ -86,6 +89,13 @@ public class InputController {
     private void validateTotalCount(List<String> dividedCommaList){
         int cnt = dividedCommaList.stream().map(s -> s.split("-")[1]).mapToInt(Integer::parseInt).sum();
         if (cnt > 20){
+            new CustomException("주문");
+        }
+    }
+
+    public void validateZero(String inputDividedComma){
+        String[] dividedHyphen = inputDividedComma.split("-");
+        if (dividedHyphen[1].equals("0")){
             new CustomException("주문");
         }
     }

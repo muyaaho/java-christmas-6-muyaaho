@@ -79,4 +79,9 @@ public class InputLineTest {
         assertMakeObj("티본스테이크-10,초코케이크-10,제로콜라-5");
     }
 
+    @Test
+    void 음식_갯수에_0이_들어온_경우(){
+        assertMakeObj("티본스테이크-0");
+    }
+
 }
