@@ -26,8 +26,19 @@ public class DateTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a1234", "aaaa", "."})
-    void 날짜에_문자가_들어올때_예외처리(String input){
+    void 날짜에_문자_예외처리(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new ReservationDate(input)).withMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "\n", "\t"})
+    void 공백_예외처리(String blank){
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new ReservationDate(blank)).withMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @Test
+    void null_예외처리(){
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> new ReservationDate(null)).withMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
 
 }
