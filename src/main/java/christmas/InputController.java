@@ -9,52 +9,51 @@ import java.util.stream.Collectors;
 
 public class InputController {
 
-    public List<String> seperateComma(String input){
-        List<String> seperated = Arrays.asList(input.split(",", -1));
-        validateBlank(seperated);
-        seperated.stream().forEach(s -> {
+    public List<String> seperateComma(String inputLine){
+        List<String> dividedCommaList = Arrays.asList(inputLine.split(",", -1));
+        validateBlank(dividedCommaList);
+        dividedCommaList.stream().forEach(s -> {
             validateNotHypen(s);
             validateNumber(s);
             validateElementBlank(s);
         });
 
-        return seperated;
+        return dividedCommaList;
     }
 
 
-    public WootecoMenu inputToWootechMenu(String seperatedInput){
-        validateNotHypen(seperatedInput);
-        validateNumber(seperatedInput);
-        String[] splitInput = seperatedInput.split("-");
-        return new WootecoMenu(splitInput[0], parseInt(splitInput[1]));
+    public WootecoMenu inputToWootechMenu(String inputDividedComma){
+        validateNotHypen(inputDividedComma);
+        validateNumber(inputDividedComma);
+        String[] dividedHyphen = inputDividedComma.split("-");
+        return new WootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1]));
     }
 
-    private void validateElementBlank(String element){
-        String[] splitInput = element.split("-");
-        if (splitInput[0].isBlank() || splitInput[1].isBlank()){
+    private void validateElementBlank(String inputDividedComma){
+        String[] dividedHyphen = inputDividedComma.split("-");
+        if (dividedHyphen[0].isBlank() || dividedHyphen[1].isBlank()){
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
-    private void validateNotHypen(String seperatedInput){
-        String[] splitInput = seperatedInput.split("-");
-        System.out.println(Arrays.toString(splitInput));
-        if (splitInput.length != 2){
+    private void validateNotHypen(String inputDividedComma){
+        String[] dividedHyphen = inputDividedComma.split("-");
+        if (dividedHyphen.length != 2){
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
-    private void validateNumber(String seperatedInput){
-        String[] splitInput = seperatedInput.split("-");
+    private void validateNumber(String inputDividedComma){
+        String[] dividedHyphen = inputDividedComma.split("-");
         try{
-            parseInt(splitInput[1]);
+            parseInt(dividedHyphen[1]);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
-    private void validateBlank(List<String> seperated) {
-        int blankCount = (int)seperated.stream().filter(e -> e.isBlank()).count();
+    private void validateBlank(List<String> divitedCommaList) {
+        int blankCount = (int)divitedCommaList.stream().filter(e -> e.isBlank()).count();
         if (blankCount>0){
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
