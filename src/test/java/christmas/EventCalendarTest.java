@@ -86,6 +86,11 @@ public class EventCalendarTest {
                 new WootecoMenu("제로콜라", 1)
         );
         assertEquals(eventCalendar.getBenefitList(26, orderedItems), new HashMap<String, Integer>());
+
+        List<WootecoMenu> orderedItems2 = List.of(
+                new WootecoMenu("시저샐러드", 1)
+        );
+        assertEquals(eventCalendar.getBenefitList(1, orderedItems), new HashMap<String, Integer>());
     }
 
     @Test
@@ -95,6 +100,7 @@ public class EventCalendarTest {
         output.put("평일 할인", 0);
         output.put("주말 할인", 0);
         output.put("특별 할인", 0);
+        output.put("증정 이벤트", 0);
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
@@ -109,6 +115,7 @@ public class EventCalendarTest {
         output.put("평일 할인", 2023);
         output.put("주말 할인", 0);
         output.put("특별 할인", 1000);
+        output.put("증정 이벤트", 0);
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("초코케이크", 1)
         );
@@ -122,6 +129,7 @@ public class EventCalendarTest {
         output.put("평일 할인", 0);
         output.put("주말 할인", 2023);
         output.put("특별 할인", 0);
+        output.put("증정 이벤트", 0);
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
@@ -135,6 +143,7 @@ public class EventCalendarTest {
         output.put("평일 할인", 0);
         output.put("주말 할인", 0);
         output.put("특별 할인", 1000);
+        output.put("증정 이벤트", 0);
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );

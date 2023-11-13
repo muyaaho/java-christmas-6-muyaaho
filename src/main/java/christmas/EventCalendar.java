@@ -12,6 +12,12 @@ public class EventCalendar {
     public Map<String, Integer> getBenefitList(int day, List<WootecoMenu> orderedMenu){
         Map<String, Integer> menus = new HashMap<>();
         PriceController priceController = new PriceController();
+
+        int pay = priceController.totalAmountBeforeDiscount(orderedMenu);
+        if (pay < 10_000){
+            return menus;
+        }
+
         menus.put("크리스마스 디데이 할인", getX_masDiscount(day));
         menus.put("평일 할인", getWeekdayDiscount(day, orderedMenu));
         menus.put("주말 할인", getWeekendDiscount(day, orderedMenu));
