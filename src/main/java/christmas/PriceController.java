@@ -13,4 +13,8 @@ public class PriceController {
 
         return totalAmount;
     }
+
+    public boolean canGift(int price){
+        return price > 120_000;
+    }
 }

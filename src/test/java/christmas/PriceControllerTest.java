@@ -1,6 +1,8 @@
 package christmas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,5 +25,12 @@ public class PriceControllerTest {
     @Test
     void enum_check(){
         assertEquals(MenuBoard.getPrice("제로콜라"), 3000);
+    }
+
+    @Test
+    void 증정이벤트_없음(){
+        PriceController priceController = new PriceController();
+        assertFalse(priceController.canGift(8500));
+        assertTrue(priceController.canGift(142000));
     }
 }
