@@ -22,12 +22,21 @@ public class EventCalendar {
         return discountAmount;
     }
 
-    public boolean isSpecialDiscount(int day){
-        List<Integer> special_days = Arrays.asList(3,10,17,24,25,31);
-        return special_days.contains(day);
+    public int getSpecialDiscount(int day){
+        if (isSpecialDay(day)){
+            return 1_000;
+        }
+        return 0;
     }
 
-    public boolean isGift(PriceController priceController, int pay){
+    public int getGiftDiscount(int pay){
+        if(isGift(new PriceController(), pay)){
+            return 25_000;
+        }
+        return 0;
+    }
+
+    private boolean isGift(PriceController priceController, int pay){
         return priceController.giftEvent(pay).equals("샴페인 1개");
     }
 
@@ -43,5 +52,10 @@ public class EventCalendar {
             return 2023*item.count();
         }
         return 0;
+    }
+
+    private boolean isSpecialDay(int day){
+        List<Integer> special_days = Arrays.asList(3,10,17,24,25,31);
+        return special_days.contains(day);
     }
 }

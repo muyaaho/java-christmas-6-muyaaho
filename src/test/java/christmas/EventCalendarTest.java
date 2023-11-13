@@ -1,8 +1,6 @@
 package christmas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,20 +55,19 @@ public class EventCalendarTest {
 
     @Test
     void 특별할인날짜_특별할인(){
-        assertTrue(eventCalendar.isSpecialDiscount(3));
+        assertEquals(eventCalendar.getSpecialDiscount(3), 1000);
     }
 
     @Test
     void 특별할인없는날짜_특별할인(){
-        assertFalse(eventCalendar.isSpecialDiscount(28));
+        assertEquals(eventCalendar.getSpecialDiscount(28), 0);
     }
 
     @Test
     void 증정이벤트(){
-        PriceController priceController = new PriceController();
-        assertTrue(eventCalendar.isGift(priceController, 142000));
-        assertTrue(eventCalendar.isGift(priceController, 120_000));
-        assertFalse(eventCalendar.isGift(priceController, 8500));
+        assertEquals(eventCalendar.getGiftDiscount(142_000), 25_000);
+        assertEquals(eventCalendar.getGiftDiscount(120_000), 25_000);
+        assertEquals(eventCalendar.getGiftDiscount(8_500), 0);
     }
 
 
