@@ -15,7 +15,7 @@ public class PriceController {
     }
 
     private boolean canGift(int price){
-        return price > 120_000;
+        return price >= 120_000;
     }
 
     public String giftEvent(int price){

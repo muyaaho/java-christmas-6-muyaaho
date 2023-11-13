@@ -27,6 +27,10 @@ public class EventCalendar {
         return special_days.contains(day);
     }
 
+    public boolean isGift(PriceController priceController, int pay){
+        return priceController.giftEvent(pay).equals("샴페인 1개");
+    }
+
     private int getDessertDiscount(WootecoMenu item){
         if (MenuBoard.getCategory(item.name()).equals("DESSERT")){
             return 2023 * item.count();

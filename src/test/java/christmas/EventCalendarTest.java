@@ -65,5 +65,13 @@ public class EventCalendarTest {
         assertFalse(eventCalendar.isSpecialDiscount(28));
     }
 
+    @Test
+    void 증정이벤트(){
+        PriceController priceController = new PriceController();
+        assertTrue(eventCalendar.isGift(priceController, 142000));
+        assertTrue(eventCalendar.isGift(priceController, 120_000));
+        assertFalse(eventCalendar.isGift(priceController, 8500));
+    }
+
 
 }
