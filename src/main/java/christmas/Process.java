@@ -7,6 +7,7 @@ import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
 import christmas.Controller.PriceController;
 import christmas.Domain.WootecoMenu;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,11 +26,32 @@ public class Process {
         InputController inputController = new InputController();
         PriceController priceController = new PriceController();
         BenefitController benefitController = new BenefitController(new DiscountController());
+        DayController dayController = new DayController("1");
         inputView.introduce();
-        inputView.printAskDay();
-        DayController dayController = new DayController(inputView.getInput());
-        inputView.printAskMenu();
-        List<WootecoMenu> orderedMenu = inputController.setOrderedMenu(new OrderedItemsController(), inputView.getInput());
+        boolean success = false;
+        // TODO: 꼭 함수로 쪼개서 아래 dayController는 return 받아 쓰도록 하기
+        while (!success) {
+            try{
+                inputView.printAskDay();
+                dayController = new DayController(inputView.getInput());
+                success = true;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        List<WootecoMenu> orderedMenu = new ArrayList<>();
+        success = false;
+        while (!success){
+            try{
+                inputView.printAskMenu();
+                orderedMenu = inputController.setOrderedMenu(new OrderedItemsController(), inputView.getInput());
+                success = true;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
         inputView.printComment(dayController);
         outputView.printOrderedMenu();
         orderedMenu.stream().forEach(s -> outputView.printString(s.toString()));
