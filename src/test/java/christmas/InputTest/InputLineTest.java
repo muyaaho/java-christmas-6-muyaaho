@@ -19,8 +19,7 @@ public class InputLineTest {
         inputController = new InputController();
     }
     private void assertMakeObj(String inputLine){
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> inputController.setOrderedMenu(new OrderedItemsController(),
-                orderedItemsController.seperateComma(inputLine)));
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> inputController.setOrderedMenu(new OrderedItemsController(), inputLine));
     }
     @Test
     void 콤마를기준으로_나눈값_확인(){
