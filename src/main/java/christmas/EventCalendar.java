@@ -36,6 +36,13 @@ public class EventCalendar {
         return 0;
     }
 
+    public int getX_masDiscount(int day){
+        if (day < 26){
+            return 1000 + (day-1)*100;
+        }
+        return 0;
+    }
+
     private boolean isGift(PriceController priceController, int pay){
         return priceController.giftEvent(pay).equals("샴페인 1개");
     }

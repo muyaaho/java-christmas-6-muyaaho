@@ -70,5 +70,14 @@ public class EventCalendarTest {
         assertEquals(eventCalendar.getGiftDiscount(8_500), 0);
     }
 
+    @Test
+    void 크리스마스_디데이_할인(){
+        assertEquals(eventCalendar.getX_masDiscount(1), 1000);
+        assertEquals(eventCalendar.getX_masDiscount(2), 1100);
+        assertEquals(eventCalendar.getX_masDiscount(25), 3400);
+
+
+    }
+
 
 }
