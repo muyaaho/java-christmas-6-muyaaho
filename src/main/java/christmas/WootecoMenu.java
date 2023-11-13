@@ -1,15 +1,34 @@
 package christmas;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import christmas.Controller.MenuBoard;
 
-public record WootecoMenu(String name, int count) {
+public class WootecoMenu {
+
+    private int count;
+    private String name;
+    private String category;
 
     public WootecoMenu(String name, int count) {
 
         this.name = name;
         this.count = count;
+        this.category = getCategory(name);
+    }
+
+    private String getCategory(String name){
+        return MenuBoard.getCategory(name);
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     @Override

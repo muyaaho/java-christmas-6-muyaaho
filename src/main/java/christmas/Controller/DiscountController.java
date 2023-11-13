@@ -1,37 +1,10 @@
-package christmas;
+package christmas.Controller;
 
+import christmas.WootecoMenu;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class EventCalendar {
-
-
-    //TODO: getBenefitList 클래스 분리
-    public Map<String, Integer> getBenefitList(int day, List<WootecoMenu> orderedMenu){
-        Map<String, Integer> menus = new HashMap<>();
-        PriceController priceController = new PriceController();
-
-        int pay = priceController.totalAmountBeforeDiscount(orderedMenu);
-        if (pay < 10_000){
-            return menus;
-        }
-
-        menus.put("크리스마스 디데이 할인", getX_masDiscount(day));
-        menus.put("평일 할인", getWeekdayDiscount(day, orderedMenu));
-        menus.put("주말 할인", getWeekendDiscount(day, orderedMenu));
-        menus.put("특별 할인", getSpecialDiscount(day));
-        menus.put("증정 이벤트", getGiftDiscount(priceController.totalAmountBeforeDiscount(orderedMenu)));
-
-        return menus;
-    }
-
-    public int getTotalBenefitAmount(int day, List<WootecoMenu> orderedMenu){
-        Map<String, Integer> menus = getBenefitList(day, orderedMenu);
-        return menus.values().stream().mapToInt(i->i).sum();
-    }
-
+public class DiscountController {
 
     List<Integer> weekend_mod = Arrays.asList(1,2);
     public int getWeekdayDiscount(int day, List<WootecoMenu> orderedItems){
@@ -77,15 +50,15 @@ public class EventCalendar {
     }
 
     private int getDessertDiscount(WootecoMenu item){
-        if (MenuBoard.getCategory(item.name()).equals("DESSERT")){
-            return 2023 * item.count();
+        if (item.getCategory().equals("DESSERT")){
+            return 2023 * item.getCount();
         }
         return 0;
     }
 
     private int getMainDiscount(WootecoMenu item){
-        if (MenuBoard.getCategory(item.name()).equals("MAIN")){
-            return 2023*item.count();
+        if (item.getCategory().equals("MAIN")){
+            return 2023*item.getCount();
         }
         return 0;
     }

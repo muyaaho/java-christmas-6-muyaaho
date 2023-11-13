@@ -3,24 +3,28 @@ package christmas.InputTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.InputController;
+import christmas.Input.InputController;
+import christmas.Input.OrderedItemsController;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class InputLineTest {
 
+    OrderedItemsController orderedItemsController;
     InputController inputController;
     @BeforeEach
     void setUp(){
+        orderedItemsController = new OrderedItemsController();
         inputController = new InputController();
     }
     private void assertMakeObj(String inputLine){
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> inputController.setOrderedMenu(inputController.seperateComma(inputLine)));
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> inputController.setOrderedMenu(new OrderedItemsController(),
+                orderedItemsController.seperateComma(inputLine)));
     }
     @Test
     void 콤마를기준으로_나눈값_확인(){
-        assertEquals(Arrays.asList("티본스테이크-1","바비큐립-1","초코케이크-2","제로콜라-1"), inputController.seperateComma("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"));
+        assertEquals(Arrays.asList("티본스테이크-1","바비큐립-1","초코케이크-2","제로콜라-1"), orderedItemsController.seperateComma("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"));
     }
 
     @Test

@@ -3,20 +3,20 @@ package christmas.InputTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.InputController;
+import christmas.Input.OrderedItemsController;
 import christmas.WootecoMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class InputControllerTest {
-    InputController inputController;
+public class OrderedItemsControllerTest {
+    OrderedItemsController orderedItemsController;
     @BeforeEach
     void setUp(){
-        inputController = new InputController();
+        orderedItemsController = new OrderedItemsController();
     }
     @Test
     void 메뉴_입력을_WootecoMenu객체로(){
-        assertThat(new WootecoMenu("티본스테이크", 1)).isEqualToComparingFieldByField(inputController.inputToWootechMenu("티본스테이크-1"));
+        assertThat(new WootecoMenu("티본스테이크", 1)).isEqualToComparingFieldByField(orderedItemsController.inputToWootechMenu("티본스테이크-1"));
     }
 
 

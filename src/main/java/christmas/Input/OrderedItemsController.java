@@ -1,20 +1,21 @@
-package christmas;
+package christmas.Input;
 
 import static java.lang.Integer.parseInt;
 
+import christmas.CustomException;
+import christmas.WootecoMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class InputController {
+public class OrderedItemsController {
     List<String> menuboard = new ArrayList<>(Arrays.asList("양송이수프", "타파스", "시저샐러드", "티본스테이크", "바비큐립", "해산물파스타", "크리스마스파스타", "초코케이크", "아이스크림", "제로콜라", "레드와인", "샴페인"));
 
 
     public List<String> seperateComma(String inputLine){
         List<String> dividedCommaList = Arrays.asList(inputLine.split(",", -1));
-//        System.out.println(dividedCommaList);
         dividedCommaList.stream().forEach(s -> {
             validateNotHypen(s);
             validateNumber(s);
@@ -28,12 +29,8 @@ public class InputController {
         return dividedCommaList;
     }
 
-    public List<WootecoMenu> setOrderedMenu(List<String> dividedCommaList){
-        return dividedCommaList.stream().map(this::inputToWootechMenu).toList();
-    }
 
-
-    // TODO: 생성자로 변경 만들어도 좋을 듯. 지금 메뉴를 갖고 있는 객체 이제 여기서 계산하는거지
+    // TODO: 중복되는 함수 어떻게 해 볼지 생각
     public WootecoMenu inputToWootechMenu(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
         return new WootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1]));

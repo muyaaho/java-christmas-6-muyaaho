@@ -1,4 +1,4 @@
-package christmas;
+package christmas.Controller;
 
 import java.util.Arrays;
 
@@ -34,8 +34,8 @@ public enum MenuBoard {
         return price;
     }
 
-    public static int getPrice(String input_name){
-        return Arrays.stream(values()).filter(menu -> menu.name.equals(input_name)).findAny().orElse(null).getPrice();
+    public static int getPrice(String food_name){
+        return Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null).getPrice();
     }
 
     public String getCategory() {

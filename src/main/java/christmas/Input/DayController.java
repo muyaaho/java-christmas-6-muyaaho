@@ -1,14 +1,16 @@
-package christmas;
+package christmas.Input;
 
 import static java.lang.Integer.parseInt;
 
-public class ReservationDate {
+import christmas.CustomException;
+
+public class DayController {
     private int day;
 
-    public ReservationDate(String day) {
+    public DayController(String day) {
         validateDay(day);
         int convertDay = parseInt(day);
-        validateOneToThirtyOne(convertDay);
+        validate1stTo31st(convertDay);
         this.day = convertDay;
     }
 
@@ -16,7 +18,7 @@ public class ReservationDate {
         return day;
     }
 
-    private void validateOneToThirtyOne(int day){
+    private void validate1stTo31st(int day){
         if (day < 1 || day > 31) {
             new CustomException("날짜");
         }
