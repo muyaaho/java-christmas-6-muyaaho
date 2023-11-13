@@ -1,6 +1,8 @@
 package christmas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,7 @@ public class EventCalendarTest {
         eventCalendar = new EventCalendar();
     }
     @Test
-    void 평일에_평일할인가격(){
+    void 평일_평일할인(){
         List<WootecoMenu> orderedItems = List.of(new WootecoMenu("초코케이크", 1));
         assertEquals(eventCalendar.getWeekdayDiscount(3, orderedItems), 2023);
 
@@ -27,13 +29,13 @@ public class EventCalendarTest {
     }
 
     @Test
-    void 주말인데평일가격나오는지(){
+    void 주말_평일할인(){
         List<WootecoMenu> orderedItems = List.of(new WootecoMenu("초코케이크", 1));
         assertEquals(eventCalendar.getWeekdayDiscount(1, orderedItems), 0);
     }
 
     @Test
-    void 주말에_주말할인가격(){
+    void 주말_주말할인(){
         List<WootecoMenu> orderedItems = List.of(new WootecoMenu("티본스테이크", 1));
         assertEquals(eventCalendar.getWeekendDiscount(15, orderedItems), 2023);
         List<WootecoMenu> orderedItems2 = List.of(
@@ -48,9 +50,19 @@ public class EventCalendarTest {
     }
 
     @Test
-    void 평일에_주말할인되는지(){
+    void 평일_주말할인(){
         List<WootecoMenu> orderedItems = List.of(new WootecoMenu("티본스테이크", 1));
         assertEquals(eventCalendar.getWeekendDiscount(4, orderedItems), 0);
+    }
+
+    @Test
+    void 특별할인날짜_특별할인(){
+        assertTrue(eventCalendar.isSpecialDiscount(3));
+    }
+
+    @Test
+    void 특별할인없는날짜_특별할인(){
+        assertFalse(eventCalendar.isSpecialDiscount(28));
     }
 
 

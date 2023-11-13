@@ -22,6 +22,11 @@ public class EventCalendar {
         return discountAmount;
     }
 
+    public boolean isSpecialDiscount(int day){
+        List<Integer> special_days = Arrays.asList(3,10,17,24,25,31);
+        return special_days.contains(day);
+    }
+
     private int getDessertDiscount(WootecoMenu item){
         if (MenuBoard.getCategory(item.name()).equals("DESSERT")){
             return 2023 * item.count();
