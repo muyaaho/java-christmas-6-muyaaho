@@ -1,6 +1,6 @@
-package christmas.Input;
+package christmas.Controller.Input;
 
-import christmas.WootecoMenu;
+import christmas.Domain.WootecoMenu;
 import java.util.List;
 
 public class InputController {

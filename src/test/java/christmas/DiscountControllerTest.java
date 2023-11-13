@@ -3,6 +3,7 @@ package christmas;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.DiscountController;
+import christmas.Domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import christmas.Controller.MenuBoard;
+import christmas.Domain.MenuBoard;
 import christmas.Controller.PriceController;
+import christmas.Domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

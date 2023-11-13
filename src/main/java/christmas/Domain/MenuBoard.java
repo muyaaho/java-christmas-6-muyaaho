@@ -1,4 +1,4 @@
-package christmas.Controller;
+package christmas.Domain;
 
 import java.util.Arrays;
 

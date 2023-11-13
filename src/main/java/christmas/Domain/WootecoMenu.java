@@ -1,6 +1,6 @@
-package christmas;
+package christmas.Domain;
 
-import christmas.Controller.MenuBoard;
+import christmas.Domain.MenuBoard;
 
 public class WootecoMenu {
 

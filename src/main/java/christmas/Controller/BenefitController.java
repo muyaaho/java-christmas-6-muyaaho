@@ -1,6 +1,6 @@
 package christmas.Controller;
 
-import christmas.WootecoMenu;
+import christmas.Domain.WootecoMenu;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +34,16 @@ public class BenefitController {
     public int getTotalBenefitAmount(int day, List<WootecoMenu> orderedMenu){
         Map<String, Integer> menus = getBenefitList(day, orderedMenu);
         return menus.values().stream().mapToInt(i->i).sum();
+    }
+
+    public int getFinalCost(int day, List<WootecoMenu> orderedMenu){
+        PriceController priceController = new PriceController();
+        int totalAmountBeforeDiscount = priceController.totalAmountBeforeDiscount(orderedMenu);
+        if (discountController.getGiftDiscount(totalAmountBeforeDiscount) < 25){
+            return totalAmountBeforeDiscount - getTotalBenefitAmount(day, orderedMenu);
+        }
+        return totalAmountBeforeDiscount - getTotalBenefitAmount(day, orderedMenu) + 25000;
+
     }
 
 }

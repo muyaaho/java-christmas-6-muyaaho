@@ -1,4 +1,4 @@
-package christmas.Input;
+package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 

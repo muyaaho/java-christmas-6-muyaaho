@@ -1,6 +1,6 @@
 package christmas.Controller;
 
-import christmas.WootecoMenu;
+import christmas.Domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 

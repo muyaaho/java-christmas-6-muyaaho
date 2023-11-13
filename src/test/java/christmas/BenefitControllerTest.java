@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.BenefitController;
 import christmas.Controller.DiscountController;
+import christmas.Domain.WootecoMenu;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,5 +120,25 @@ public class BenefitControllerTest {
                 new WootecoMenu("제로콜라", 1)
         );
         assertEquals(benefitController.getTotalBenefitAmount(3, orderedItems), 31246);
+    }
+
+    @Test
+    void 할인_후_예상_결제_금액_할인X(){
+        List<WootecoMenu> orderedItems = List.of(
+                new WootecoMenu("타파스", 1),
+                new WootecoMenu("제로콜라", 1)
+        );
+        assertEquals(benefitController.getFinalCost(26, orderedItems), 8500);
+    }
+
+    @Test
+    void 할인_후_예상_결제_금액_할인O(){
+        List<WootecoMenu> orderedItems = List.of(
+                new WootecoMenu("티본스테이크", 1),
+                new WootecoMenu("바비큐립", 1),
+                new WootecoMenu("초코케이크", 2),
+                new WootecoMenu("제로콜라", 1)
+        );
+        assertEquals(benefitController.getFinalCost(3, orderedItems), 135754);
     }
 }

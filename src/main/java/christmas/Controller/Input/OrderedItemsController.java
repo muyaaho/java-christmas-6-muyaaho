@@ -1,9 +1,9 @@
-package christmas.Input;
+package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 
 import christmas.CustomException;
-import christmas.WootecoMenu;
+import christmas.Domain.WootecoMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

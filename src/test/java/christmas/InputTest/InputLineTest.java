@@ -3,8 +3,8 @@ package christmas.InputTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.Input.InputController;
-import christmas.Input.OrderedItemsController;
+import christmas.Controller.Input.InputController;
+import christmas.Controller.Input.OrderedItemsController;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
