@@ -41,4 +41,8 @@ public enum MenuBoard {
     public String getCategory() {
         return category;
     }
+
+    public static String getCategory(String food_name){
+        return Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null).getCategory();
+    }
 }
