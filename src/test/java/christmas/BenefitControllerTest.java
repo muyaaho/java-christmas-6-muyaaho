@@ -141,4 +141,25 @@ public class BenefitControllerTest {
         );
         assertEquals(benefitController.getFinalCost(3, orderedItems), 135754);
     }
+
+    @Test
+    void 이벤트_배지_없음(){
+        List<WootecoMenu> orderedItems = List.of(
+                new WootecoMenu("타파스", 1),
+                new WootecoMenu("제로콜라", 1)
+        );
+        assertEquals(benefitController.getBadge(26, orderedItems), "없음");
+    }
+
+    @Test
+    void 이벤트_배지_있음(){
+        List<WootecoMenu> orderedItems = List.of(
+                new WootecoMenu("티본스테이크", 1),
+                new WootecoMenu("바비큐립", 1),
+                new WootecoMenu("초코케이크", 2),
+                new WootecoMenu("제로콜라", 1)
+        );
+        assertEquals(benefitController.getBadge(3, orderedItems), "산타");
+
+    }
 }

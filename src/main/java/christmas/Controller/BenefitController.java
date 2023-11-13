@@ -46,4 +46,18 @@ public class BenefitController {
 
     }
 
+    public String getBadge(int day, List<WootecoMenu> orderedMenu){
+        int benefit = getTotalBenefitAmount(day, orderedMenu);
+        if (benefit >= 20_000){
+            return "산타";
+        }
+        else if (benefit < 20_000 && benefit >= 10_000){
+            return "트리";
+        }
+        else if (benefit < 10_000 && benefit >= 5_000){
+            return "별";
+        }
+        return "없음";
+    }
+
 }
