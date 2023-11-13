@@ -1,9 +1,25 @@
 package christmas;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EventCalendar {
+
+
+    //TODO: getBenefitList 클래스 분리
+    public Map<String, Integer> getBenefitList(int day, List<WootecoMenu> orderedMenu){
+        Map<String, Integer> menus = new HashMap<>();
+        PriceController priceController = new PriceController();
+        menus.put("크리스마스 디데이 할인", getX_masDiscount(day));
+        menus.put("평일 할인", getWeekdayDiscount(day, orderedMenu));
+        menus.put("주말 할인", getWeekendDiscount(day, orderedMenu));
+        menus.put("특별 할인", getSpecialDiscount(day));
+        menus.put("증정 이벤트", getGiftDiscount(priceController.totalAmountBeforeDiscount(orderedMenu)));
+
+        return menus;
+    }
 
     List<Integer> weekend_mod = Arrays.asList(1,2);
     public int getWeekdayDiscount(int day, List<WootecoMenu> orderedItems){
@@ -42,6 +58,7 @@ public class EventCalendar {
         }
         return 0;
     }
+
 
     private boolean isGift(PriceController priceController, int pay){
         return priceController.giftEvent(pay).equals("샴페인 1개");
