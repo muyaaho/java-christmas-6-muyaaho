@@ -1,5 +1,7 @@
 package christmas;
 
+import java.util.Arrays;
+
 public enum MenuBoard {
     MASHROOM_SOUP("양송이수프", 6000, "APPETIZER"),
     TAPAS("타파스",5_500, "APPETIZER"),
@@ -30,6 +32,10 @@ public enum MenuBoard {
 
     public int getPrice() {
         return price;
+    }
+
+    public static int getPrice(String input_name){
+        return Arrays.stream(values()).filter(menu -> menu.name.equals(input_name)).findAny().orElse(null).getPrice();
     }
 
     public String getCategory() {
