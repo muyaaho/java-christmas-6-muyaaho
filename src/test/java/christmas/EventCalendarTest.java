@@ -167,5 +167,22 @@ public class EventCalendarTest {
         assertEquals(eventCalendar.getBenefitList(3, orderedItems), output);
     }
 
+    @Test
+    void 총혜택_금액(){
+        Map<String, Integer> output = new HashMap<>();
+        output.put("크리스마스 디데이 할인", 1200);
+        output.put("평일 할인", 4046);
+        output.put("주말 할인", 0);
+        output.put("특별 할인", 1000);
+        output.put("증정 이벤트", 25000);
+        List<WootecoMenu> orderedItems = List.of(
+                new WootecoMenu("티본스테이크", 1),
+                new WootecoMenu("바비큐립", 1),
+                new WootecoMenu("초코케이크", 2),
+                new WootecoMenu("제로콜라", 1)
+        );
+        assertEquals(eventCalendar.getTotalBenefitAmount(3, orderedItems), 31246);
+    }
+
 
 }

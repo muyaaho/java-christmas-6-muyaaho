@@ -27,6 +27,12 @@ public class EventCalendar {
         return menus;
     }
 
+    public int getTotalBenefitAmount(int day, List<WootecoMenu> orderedMenu){
+        Map<String, Integer> menus = getBenefitList(day, orderedMenu);
+        return menus.values().stream().mapToInt(i->i).sum();
+    }
+
+
     List<Integer> weekend_mod = Arrays.asList(1,2);
     public int getWeekdayDiscount(int day, List<WootecoMenu> orderedItems){
         int discountAmount = 0;
