@@ -14,7 +14,14 @@ public class PriceController {
         return totalAmount;
     }
 
-    public boolean canGift(int price){
+    private boolean canGift(int price){
         return price > 120_000;
+    }
+
+    public String giftEvent(int price){
+        if (canGift(price)){
+            return "샴페인 1개";
+        }
+        return "없음";
     }
 }
