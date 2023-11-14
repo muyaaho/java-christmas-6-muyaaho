@@ -15,4 +15,5 @@ public class InputController {
         String[] dividedHyphen = inputDividedComma.split("-");
         return new WootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1]));
     }
+
 }

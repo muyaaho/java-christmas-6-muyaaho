@@ -5,17 +5,11 @@ import static java.lang.Integer.parseInt;
 import christmas.Exception.DayException;
 
 public class DayController {
-    private int day;
-
-    public DayController(String day) {
+    public int getDay(String day) {
         validateDay(day);
         int convertDay = parseInt(day);
         validate1stTo31st(convertDay);
-        this.day = convertDay;
-    }
-
-    public int getDay() {
-        return day;
+        return convertDay;
     }
 
     private void validate1stTo31st(int day){

@@ -6,12 +6,13 @@ import christmas.Controller.Input.DayController;
 import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
 import christmas.Controller.PriceController;
+import christmas.Domain.OrderStatus;
 import christmas.Domain.WootecoMenu;
 import christmas.View.InputView;
 import christmas.View.OutputView;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.mockito.internal.matchers.Or;
 
 public class Process {
 
@@ -24,57 +25,63 @@ public class Process {
     }
 
     public void run(){
-        // TODO: print별로 쪼갤 수 있음
-        InputController inputController = new InputController();
-        PriceController priceController = new PriceController();
-        BenefitController benefitController = new BenefitController(new DiscountController());
-        DayController dayController = new DayController("1");
-        inputView.introduce();
-        boolean success = false;
-        // TODO: 꼭 함수로 쪼개서 아래 dayController는 return 받아 쓰도록 하기
-        while (!success) {
-            try{
-                inputView.printAskDay();
-                dayController = new DayController(inputView.getInput());
-                success = true;
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-
-        List<WootecoMenu> orderedMenu = new ArrayList<>();
-        success = false;
-        while (!success){
-            try{
-                inputView.printAskMenu();
-                orderedMenu = inputController.setOrderedMenu(new OrderedItemsController(), inputView.getInput());
-                success = true;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-
-        inputView.printComment(dayController);
-        outputView.printOrderedMenu();
-        orderedMenu.stream().forEach(s -> outputView.printString(s.toString()));
-
-        int beforeBenefit = priceController.totalAmountBeforeDiscount(orderedMenu);
-        outputView.printBeforeDiscount(beforeBenefit);
-        outputView.printGift(priceController.canGift(beforeBenefit));
-
-        Map<String, Integer> benefitList = benefitController.getBenefitList(dayController.getDay(), orderedMenu);
-        // TODO: 할인 전, 총 혜택, 할인 후 갖고 있는 객체 만들기
-        int totalBenefit = benefitController.getTotalBenefitAmount(dayController.getDay(), orderedMenu);
-        outputView.printBenefitList(totalBenefit, benefitList);
-
-        outputView.printTotalBeneift(benefitController.getTotalBenefitAmount(dayController.getDay(), orderedMenu));
-
-        outputView.printFinalCost(benefitController.getFinalCost(dayController.getDay(), orderedMenu));
-
-        // TODO: orderedMenu, day를 갖고 있는 현재 상태? 객체 만들자..
-        outputView.printBadge(benefitController.getBadge(dayController.getDay(), orderedMenu));
-
-
+        // TODO: 비슷한 이름 바꾸기
+        OrderStatus orderStatus = getOrder(new DayController(), new InputController());
+        inputView.printComment(orderStatus.day());
+        orderedMenu(orderStatus);
+        beforeTotalAndGift(new PriceController(), orderStatus);
+        usedBenefitController(new BenefitController(new DiscountController()), orderStatus);
     }
 
+    // TODO: 이거 아닌 것 같음 한 객체에서 몇가지 일이나 하는거임?
+    private void usedBenefitController(BenefitController benefitController, OrderStatus orderStatus){
+        Map<String, Integer> benefitList = benefitController.getBenefitList(orderStatus.day(), orderStatus.foods());
+        // TODO: 할인 전, 총 혜택, 할인 후 갖고 있는 객체 만들기
+        int totalBenefit = benefitController.getTotalBenefitAmount(orderStatus.day(), orderStatus.foods());
+        outputView.printBenefitList(totalBenefit, benefitList);
+        outputView.printTotalBeneift(benefitController.getTotalBenefitAmount(orderStatus.day(), orderStatus.foods()));
+        outputView.printFinalCost(benefitController.getFinalCost(orderStatus.day(), orderStatus.foods()));
+        // TODO: orderedMenu, day를 갖고 있는 현재 상태? 객체 만들자..
+        outputView.printBadge(benefitController.getBadge(orderStatus.day(), orderStatus.foods()));
+    }
+
+
+    // TODO 한 가지 일로 쪼개야 할 것 같음
+    private void beforeTotalAndGift(PriceController priceController, OrderStatus orderStatus){
+        int beforeBenefit = priceController.totalAmountBeforeDiscount(orderStatus.foods());
+        outputView.printBeforeDiscount(beforeBenefit);
+        outputView.printGift(priceController.canGift(beforeBenefit));
+    }
+
+    private void orderedMenu(OrderStatus orderStatus){
+        outputView.printOrderedMenu();
+        orderStatus.foods().stream().forEach(s -> outputView.printString(s.toString()));
+    }
+
+    private OrderStatus getOrder(DayController dayController, InputController inputController){
+        int day = getDay(dayController);
+        List<WootecoMenu> orderedMenu = getFoods(inputController);
+        return new OrderStatus(day, orderedMenu);
+    }
+
+    private int getDay(DayController dayController){
+        try{
+            inputView.printAskDay();
+            int day = dayController.getDay(inputView.getInput());
+            return day;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getDay(new DayController());
+        }
+    }
+
+    private List<WootecoMenu> getFoods(InputController inputController){
+        try{
+            inputView.printAskMenu();
+            return inputController.setOrderedMenu(new OrderedItemsController(), inputView.getInput());
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getFoods(new InputController());
+        }
+    }
 }
