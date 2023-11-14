@@ -7,6 +7,8 @@ import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
 import christmas.Controller.PriceController;
 import christmas.Domain.WootecoMenu;
+import christmas.View.InputView;
+import christmas.View.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,19 +60,13 @@ public class Process {
 
         int beforeBenefit = priceController.totalAmountBeforeDiscount(orderedMenu);
         outputView.printBeforeDiscount(beforeBenefit);
-        outputView.printGift(priceController.giftEvent(beforeBenefit));
+        outputView.printGift(priceController.canGift(beforeBenefit));
 
-        outputView.printBenefitList();
         Map<String, Integer> benefitList = benefitController.getBenefitList(dayController.getDay(), orderedMenu);
-        if (benefitController.getTotalBenefitAmount(dayController.getDay(), orderedMenu) == 0){
-            outputView.printString("없음");
-        }
-        // TODO: else 없애기
-        else {
-            benefitList.entrySet().stream().filter(f -> f.getValue() > 0).forEach(k -> outputView.printString(benefitToString(k.getKey(),
-                    k.getValue())));
-        }
-        
+        // TODO: 할인 전, 총 혜택, 할인 후 갖고 있는 객체 만들기
+        int totalBenefit = benefitController.getTotalBenefitAmount(dayController.getDay(), orderedMenu);
+        outputView.printBenefitList(totalBenefit, benefitList);
+
         outputView.printTotalBeneift(benefitController.getTotalBenefitAmount(dayController.getDay(), orderedMenu));
 
         outputView.printFinalCost(benefitController.getFinalCost(dayController.getDay(), orderedMenu));
@@ -81,7 +77,4 @@ public class Process {
 
     }
 
-    public String benefitToString(String key, int value){
-        return key+": "+"-"+String.format("%,d", value)+"원";
-    }
 }

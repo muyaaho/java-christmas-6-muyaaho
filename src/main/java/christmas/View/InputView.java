@@ -1,4 +1,4 @@
-package christmas;
+package christmas.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Controller.Input.DayController;

@@ -38,7 +38,7 @@ public class PriceControllerTest {
     
     @Test
     void 증정이벤트_샴페인_1개(){
-        assertEquals(priceController.giftEvent(142000), "샴페인 1개");
-        assertEquals(priceController.giftEvent(8500), "없음");
+        assertTrue(priceController.canGift(142000));
+        assertFalse(priceController.canGift(8500));
     }
 }

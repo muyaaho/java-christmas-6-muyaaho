@@ -46,7 +46,7 @@ public class DiscountController {
 
 
     private boolean isGift(PriceController priceController, int pay){
-        return priceController.giftEvent(pay).equals("샴페인 1개");
+        return priceController.canGift(pay);
     }
 
     private int getDessertDiscount(WootecoMenu item){
