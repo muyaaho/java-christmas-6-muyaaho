@@ -1,8 +1,7 @@
 package christmas.Controller;
 
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.OrderStatus;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BenefitController {
@@ -13,41 +12,39 @@ public class BenefitController {
     }
 
 
-    public Map<String, Integer> getBenefitList(int day, List<WootecoMenu> orderedMenu){
+    public Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         Map<String, Integer> menus = new HashMap<>();
-        PriceController priceController = new PriceController();
 
-        int pay = priceController.totalAmountBeforeDiscount(orderedMenu);
+        int pay = orderStatus.totalCost();
         if (pay < 10_000){
             return menus;
         }
 
-        menus.put("크리스마스 디데이 할인", discountController.getX_masDiscount(day));
-        menus.put("평일 할인", discountController.getWeekdayDiscount(day, orderedMenu));
-        menus.put("주말 할인", discountController.getWeekendDiscount(day, orderedMenu));
-        menus.put("특별 할인", discountController.getSpecialDiscount(day));
-        menus.put("증정 이벤트", discountController.getGiftDiscount(priceController.totalAmountBeforeDiscount(orderedMenu)));
+        menus.put("크리스마스 디데이 할인", discountController.getX_masDiscount(orderStatus.day()));
+        menus.put("평일 할인", discountController.getWeekdayDiscount(orderStatus));
+        menus.put("주말 할인", discountController.getWeekendDiscount(orderStatus));
+        menus.put("특별 할인", discountController.getSpecialDiscount(orderStatus.day()));
+        menus.put("증정 이벤트", discountController.getGiftDiscount(orderStatus));
 
         return menus;
     }
 
-    public int getTotalBenefitAmount(int day, List<WootecoMenu> orderedMenu){
-        Map<String, Integer> menus = getBenefitList(day, orderedMenu);
+    public int getTotalBenefitAmount(OrderStatus orderStatus){
+        Map<String, Integer> menus = getBenefitList(orderStatus);
         return menus.values().stream().mapToInt(i->i).sum();
     }
 
-    public int getFinalCost(int day, List<WootecoMenu> orderedMenu){
-        PriceController priceController = new PriceController();
-        int totalAmountBeforeDiscount = priceController.totalAmountBeforeDiscount(orderedMenu);
-        if (discountController.getGiftDiscount(totalAmountBeforeDiscount) < 25){
-            return totalAmountBeforeDiscount - getTotalBenefitAmount(day, orderedMenu);
+    public int getFinalCost(OrderStatus orderStatus){
+        int totalAmountBeforeDiscount = orderStatus.totalCost();
+        if (discountController.getGiftDiscount(orderStatus) < 25){
+            return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus);
         }
-        return totalAmountBeforeDiscount - getTotalBenefitAmount(day, orderedMenu) + 25000;
+        return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus) + 25000;
 
     }
 
-    public String getBadge(int day, List<WootecoMenu> orderedMenu){
-        int benefit = getTotalBenefitAmount(day, orderedMenu);
+    public String getBadge(OrderStatus orderStatus){
+        int benefit = getTotalBenefitAmount(orderStatus);
         if (benefit >= 20_000){
             return "산타";
         }

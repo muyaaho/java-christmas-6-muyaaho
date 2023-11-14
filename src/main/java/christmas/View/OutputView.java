@@ -24,10 +24,10 @@ public class OutputView {
         System.out.println(outputController.giftFormat(gift));
     }
 
-    public void printBenefitList(int pay, Map<String, Integer> benefitList){
+    public void printBenefitList(int benefit, Map<String, Integer> benefitList){
         System.out.println();
         System.out.println("<혜택 내역>");
-        System.out.println(outputController.benefitListFormat(pay, benefitList));
+        System.out.println(outputController.benefitListFormat(benefit, benefitList));
     }
 
     public void printTotalBeneift(int benefit){

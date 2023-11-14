@@ -22,8 +22,8 @@ public class OutputController {
         return "없음";
     }
 
-    public String benefitListFormat(int pay, Map<String, Integer> benefitList){
-        if (pay > 0){
+    public String benefitListFormat(int benefit, Map<String, Integer> benefitList){
+        if (benefit > 0){
             String join = benefitList.entrySet().stream()
                     .filter(f -> f.getValue() > 0)
                     .map(k -> benefitToString(k.getKey(), k.getValue()))

@@ -81,13 +81,19 @@
 - [x] orderedItemsController 중복되는 함수
 - [x] 혜택 출력할 때 '없음' 출력되도록 메소드 생성하기(else 지우기)
 - [x] orderedMenu, day 갖고 있는 객체 만들기 record로
-- [ ] 할인 전 금액, 총 혜택, 할인 후 예상 결제 금액 갖고 있는 객체 만들기(이 객체 내에서 계산하게 하자)
+- [x] 할인 전 금액, 총 혜택, 할인 후 예상 결제 금액 갖고 있는 객체 만들기(이 객체 내에서 계산하게 하자)
 - [ ] OutputView에서 가격 출력할 때 --원 -> 메소드로 만들기
 - [ ] process의 run()함수를 출력되는 <> 꺽쇠 별로 메소드 만들기
 - [ ] 중복으로 묻는 부분도 메소드로 만들기
 - [ ] 다양한 테스트 케이스 생성
 - [ ] OutputView 상수 생성
 - [ ] process 메소드 한 가지 일만 하도록
+- [ ] orderStatus 다시 한번 생각해보기
+- [ ] 생성 안에 생성하는거 개선해보기
+- [ ] usedBenefitController 1 가지 일만 하도록 수정
+- [ ] beforeTotalAndGift 1가지 일만 하도록
+- [ ] printbenefitList 만원 이하 0원가지고 수정
+- [ ] test 객체 어디 만들어두기(readme 예제 2개)
 
 ## 체크리스트
 

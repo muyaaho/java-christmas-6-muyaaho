@@ -5,14 +5,14 @@ import christmas.Controller.DiscountController;
 import christmas.Controller.Input.DayController;
 import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
-import christmas.Controller.PriceController;
+import christmas.Domain.BenefitStatus;
+import christmas.Domain.GenerateOrderStatus;
 import christmas.Domain.OrderStatus;
 import christmas.Domain.WootecoMenu;
 import christmas.View.InputView;
 import christmas.View.OutputView;
 import java.util.List;
 import java.util.Map;
-import org.mockito.internal.matchers.Or;
 
 public class Process {
 
@@ -25,32 +25,46 @@ public class Process {
     }
 
     public void run(){
+
         // TODO: 비슷한 이름 바꾸기
         OrderStatus orderStatus = getOrder(new DayController(), new InputController());
+        // TODO: 생성의 생성 맞음?
+        BenefitStatus benefitStatus = getBenefitStatus(orderStatus, new BenefitController(new DiscountController()));
         inputView.printComment(orderStatus.day());
         orderedMenu(orderStatus);
-        beforeTotalAndGift(new PriceController(), orderStatus);
-        usedBenefitController(new BenefitController(new DiscountController()), orderStatus);
+        beforeTotalAndGift(orderStatus);
+        usedBenefitController(new BenefitController(new DiscountController()), orderStatus, benefitStatus);
+    }
+
+    private OrderStatus getOrder(DayController dayController, InputController inputController){
+
+        int day = getDay(dayController);
+        List<WootecoMenu> orderedMenu = getFoods(inputController);
+        GenerateOrderStatus generateOrderStatus = new GenerateOrderStatus(day, orderedMenu);
+        return generateOrderStatus.generate();
+    }
+
+    private BenefitStatus getBenefitStatus(OrderStatus orderStatus, BenefitController benefitController){
+        return new BenefitStatus(benefitController.getTotalBenefitAmount(orderStatus), benefitController.getFinalCost(
+                orderStatus));
     }
 
     // TODO: 이거 아닌 것 같음 한 객체에서 몇가지 일이나 하는거임?
-    private void usedBenefitController(BenefitController benefitController, OrderStatus orderStatus){
-        Map<String, Integer> benefitList = benefitController.getBenefitList(orderStatus.day(), orderStatus.foods());
-        // TODO: 할인 전, 총 혜택, 할인 후 갖고 있는 객체 만들기
-        int totalBenefit = benefitController.getTotalBenefitAmount(orderStatus.day(), orderStatus.foods());
-        outputView.printBenefitList(totalBenefit, benefitList);
-        outputView.printTotalBeneift(benefitController.getTotalBenefitAmount(orderStatus.day(), orderStatus.foods()));
-        outputView.printFinalCost(benefitController.getFinalCost(orderStatus.day(), orderStatus.foods()));
-        // TODO: orderedMenu, day를 갖고 있는 현재 상태? 객체 만들자..
-        outputView.printBadge(benefitController.getBadge(orderStatus.day(), orderStatus.foods()));
+    private void usedBenefitController(BenefitController benefitController, OrderStatus orderStatus, BenefitStatus benefitStatus){
+        Map<String, Integer> benefitList = benefitController.getBenefitList(orderStatus);
+        // TODO: beneiftList도 1000원 이하라면 0원이라서 outputController 수정 가능 여기 가격 안받아도 될 듯
+        outputView.printBenefitList(benefitStatus.totalBenefitCost(), benefitList);
+        outputView.printTotalBeneift(benefitStatus.totalBenefitCost());
+        outputView.printFinalCost(benefitStatus.finalCost());
+        outputView.printBadge(benefitController.getBadge(orderStatus));
     }
 
 
     // TODO 한 가지 일로 쪼개야 할 것 같음
-    private void beforeTotalAndGift(PriceController priceController, OrderStatus orderStatus){
-        int beforeBenefit = priceController.totalAmountBeforeDiscount(orderStatus.foods());
+    private void beforeTotalAndGift(OrderStatus orderStatus){
+        int beforeBenefit = orderStatus.totalCost();
         outputView.printBeforeDiscount(beforeBenefit);
-        outputView.printGift(priceController.canGift(beforeBenefit));
+        outputView.printGift(orderStatus.canGift());
     }
 
     private void orderedMenu(OrderStatus orderStatus){
@@ -58,11 +72,7 @@ public class Process {
         orderStatus.foods().stream().forEach(s -> outputView.printString(s.toString()));
     }
 
-    private OrderStatus getOrder(DayController dayController, InputController inputController){
-        int day = getDay(dayController);
-        List<WootecoMenu> orderedMenu = getFoods(inputController);
-        return new OrderStatus(day, orderedMenu);
-    }
+
 
     private int getDay(DayController dayController){
         try{

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.BenefitController;
 import christmas.Controller.DiscountController;
+import christmas.Domain.GenerateOrderStatus;
+import christmas.Domain.OrderStatus;
 import christmas.Domain.WootecoMenu;
 import java.util.HashMap;
 import java.util.List;
@@ -39,14 +41,18 @@ public class BenefitControllerTest {
         output.put("증정 이벤트", gift);
         return output;
     }
+
+    public OrderStatus makeInput(int day, List<WootecoMenu> input){
+        return new GenerateOrderStatus(day, input).generate();
+    }
     @Test
     void 적용된_이벤트_없음(){
-        assertEquals(benefitController.getBenefitList(26, noBenefitInput), new HashMap<String, Integer>());
+        assertEquals(benefitController.getBenefitList(makeInput(26, noBenefitInput)), new HashMap<String, Integer>());
 
         List<WootecoMenu> orderedItems2 = List.of(
                 new WootecoMenu("시저샐러드", 1)
         );
-        assertEquals(benefitController.getBenefitList(1, orderedItems2), new HashMap<String, Integer>());
+        assertEquals(benefitController.getBenefitList(makeInput(1, orderedItems2)), new HashMap<String, Integer>());
     }
 
     @Test
@@ -55,7 +61,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(4, orderedItems), output);
+        assertEquals(benefitController.getBenefitList(makeInput(4, orderedItems)), output);
 
     }
 
@@ -65,7 +71,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("초코케이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(31, orderedItems), output);
+        assertEquals(benefitController.getBenefitList(makeInput(31, orderedItems)), output);
     }
 
     @Test
@@ -74,7 +80,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(30, orderedItems), output);
+        assertEquals(benefitController.getBenefitList(makeInput(30, orderedItems)), output);
     }
 
     @Test
@@ -83,39 +89,39 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(31, orderedItems), output);
+        assertEquals(benefitController.getBenefitList(makeInput(31, orderedItems)), output);
     }
 
     @Test
     void 전체_증정이벤트(){
         Map<String, Integer> output = makeOutput(1200, 4046, 0, 1000, 25000);
-        assertEquals(benefitController.getBenefitList(3, yesBenefitInput), output);
+        assertEquals(benefitController.getBenefitList(makeInput(3, yesBenefitInput)), output);
     }
 
     @Test
     void 총혜택_금액(){
         Map<String, Integer> output = makeOutput(1200, 4046, 0, 1000, 25000);
-        assertEquals(benefitController.getTotalBenefitAmount(3, yesBenefitInput), 31246);
+        assertEquals(benefitController.getTotalBenefitAmount(makeInput(3, yesBenefitInput)), 31246);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인X(){
-        assertEquals(benefitController.getFinalCost(26, noBenefitInput), 8500);
+        assertEquals(benefitController.getFinalCost(makeInput(3, noBenefitInput)), 8500);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인O(){
-        assertEquals(benefitController.getFinalCost(3, yesBenefitInput), 135754);
+        assertEquals(benefitController.getFinalCost(makeInput(3, yesBenefitInput)), 135754);
     }
 
     @Test
     void 이벤트_배지_없음(){
-        assertEquals(benefitController.getBadge(26, noBenefitInput), "없음");
+        assertEquals(benefitController.getBadge(makeInput(3, noBenefitInput)), "없음");
     }
 
     @Test
     void 이벤트_배지_있음(){
-        assertEquals(benefitController.getBadge(3, yesBenefitInput), "산타");
+        assertEquals(benefitController.getBadge(makeInput(3, yesBenefitInput)), "산타");
 
     }
 }
