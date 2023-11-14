@@ -17,8 +17,8 @@ public class OutputController {
         return "없음";
     }
 
-    public String giftFormat(boolean gift){
-        if (gift){
+    public String giftFormat(OrderStatus orderStatus){
+        if (orderStatus.canGift()){
             return "샴페인 1개";
         }
         return "없음";

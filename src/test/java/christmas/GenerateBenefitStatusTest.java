@@ -2,7 +2,8 @@ package christmas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.Controller.BenefitController;
+import christmas.Domain.BenefitStatus;
+import christmas.Domain.GenerateBenefitStatus;
 import christmas.Controller.DiscountController;
 import christmas.Domain.GenerateOrderStatus;
 import christmas.Domain.OrderStatus;
@@ -13,13 +14,12 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BenefitControllerTest {
-    BenefitController benefitController;
+public class GenerateBenefitStatusTest {
     List<WootecoMenu> noBenefitInput;
     List<WootecoMenu> yesBenefitInput;
     @BeforeEach
     void setUp(){
-        benefitController = new BenefitController(new DiscountController());
+
         noBenefitInput = List.of(
                 new WootecoMenu("타파스", 1),
                 new WootecoMenu("제로콜라", 1)
@@ -42,17 +42,24 @@ public class BenefitControllerTest {
         return output;
     }
 
-    public OrderStatus makeInput(int day, List<WootecoMenu> input){
+    public OrderStatus makeOrder(int day, List<WootecoMenu> input){
         return new GenerateOrderStatus(day, input).generate();
     }
+
+    // TODO BenefitStatus 만드는 함수 부터 시작!!!
+    public BenefitStatus makeBenefit(OrderStatus orderStatus){
+        return new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
+    }
+
     @Test
     void 적용된_이벤트_없음(){
-        assertEquals(benefitController.getBenefitList(makeInput(26, noBenefitInput)), new HashMap<String, Integer>());
+        BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput), new DiscountController()).generate();
+        assertEquals(benefitStatus.benefitList(), new HashMap<String, Integer>());
 
         List<WootecoMenu> orderedItems2 = List.of(
                 new WootecoMenu("시저샐러드", 1)
         );
-        assertEquals(benefitController.getBenefitList(makeInput(1, orderedItems2)), new HashMap<String, Integer>());
+        assertEquals(makeBenefit(makeOrder(1, orderedItems2)).benefitList(), new HashMap<String, Integer>());
     }
 
     @Test
@@ -61,7 +68,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(makeInput(4, orderedItems)), output);
+        assertEquals(makeBenefit(makeOrder(4, orderedItems)).benefitList(), output);
 
     }
 
@@ -71,7 +78,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("초코케이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(makeInput(31, orderedItems)), output);
+        assertEquals(makeBenefit(makeOrder(31, orderedItems)).benefitList(), output);
     }
 
     @Test
@@ -80,7 +87,7 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(makeInput(30, orderedItems)), output);
+        assertEquals(makeBenefit(makeOrder(30, orderedItems)).benefitList(), output);
     }
 
     @Test
@@ -89,39 +96,38 @@ public class BenefitControllerTest {
         List<WootecoMenu> orderedItems = List.of(
                 new WootecoMenu("티본스테이크", 1)
         );
-        assertEquals(benefitController.getBenefitList(makeInput(31, orderedItems)), output);
+        assertEquals(makeBenefit(makeOrder(31, orderedItems)).benefitList(), output);
     }
 
     @Test
     void 전체_증정이벤트(){
         Map<String, Integer> output = makeOutput(1200, 4046, 0, 1000, 25000);
-        assertEquals(benefitController.getBenefitList(makeInput(3, yesBenefitInput)), output);
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).benefitList(), output);
     }
 
     @Test
     void 총혜택_금액(){
-        Map<String, Integer> output = makeOutput(1200, 4046, 0, 1000, 25000);
-        assertEquals(benefitController.getTotalBenefitAmount(makeInput(3, yesBenefitInput)), 31246);
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).totalBenefitCost(), 31246);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인X(){
-        assertEquals(benefitController.getFinalCost(makeInput(3, noBenefitInput)), 8500);
+        assertEquals(makeBenefit(makeOrder(3, noBenefitInput)).finalCost(), 8500);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인O(){
-        assertEquals(benefitController.getFinalCost(makeInput(3, yesBenefitInput)), 135754);
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).finalCost(), 135754);
     }
 
     @Test
     void 이벤트_배지_없음(){
-        assertEquals(benefitController.getBadge(makeInput(3, noBenefitInput)), "없음");
+        assertEquals(makeBenefit(makeOrder(3, noBenefitInput)).badge(), "없음");
     }
 
     @Test
     void 이벤트_배지_있음(){
-        assertEquals(benefitController.getBadge(makeInput(3, yesBenefitInput)), "산타");
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).badge(), "산타");
 
     }
 }

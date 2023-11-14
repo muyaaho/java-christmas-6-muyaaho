@@ -1,18 +1,28 @@
-package christmas.Controller;
+package christmas.Domain;
 
-import christmas.Domain.OrderStatus;
+import christmas.Controller.DiscountController;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BenefitController {
-    DiscountController discountController;
+public class GenerateBenefitStatus {
+    private DiscountController discountController;
+    private OrderStatus orderStatus;
 
-    public BenefitController(DiscountController discountController) {
+    public GenerateBenefitStatus(OrderStatus orderStatus, DiscountController discountController) {
+        this.orderStatus = orderStatus;
         this.discountController = discountController;
     }
 
+    public BenefitStatus generate(){
+        Map<String, Integer> benefitList = getBenefitList(orderStatus);
+        int totalBenefitCost = getTotalBenefitAmount(orderStatus);
+        int finalCost = getFinalCost(orderStatus);
+        String badge = getBadge(orderStatus);
+        return new BenefitStatus(benefitList, totalBenefitCost, finalCost, badge);
+    }
 
-    public Map<String, Integer> getBenefitList(OrderStatus orderStatus){
+
+    private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         Map<String, Integer> menus = new HashMap<>();
 
         int pay = orderStatus.totalCost();
@@ -29,12 +39,12 @@ public class BenefitController {
         return menus;
     }
 
-    public int getTotalBenefitAmount(OrderStatus orderStatus){
+    private int getTotalBenefitAmount(OrderStatus orderStatus){
         Map<String, Integer> menus = getBenefitList(orderStatus);
         return menus.values().stream().mapToInt(i->i).sum();
     }
 
-    public int getFinalCost(OrderStatus orderStatus){
+    private int getFinalCost(OrderStatus orderStatus){
         int totalAmountBeforeDiscount = orderStatus.totalCost();
         if (discountController.getGiftDiscount(orderStatus) < 25){
             return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus);
@@ -43,15 +53,15 @@ public class BenefitController {
 
     }
 
-    public String getBadge(OrderStatus orderStatus){
+    private String getBadge(OrderStatus orderStatus){
         int benefit = getTotalBenefitAmount(orderStatus);
         if (benefit >= 20_000){
             return "산타";
         }
-        else if (benefit < 20_000 && benefit >= 10_000){
+        else if (benefit >= 10_000){
             return "트리";
         }
-        else if (benefit < 10_000 && benefit >= 5_000){
+        else if (benefit >= 5_000){
             return "별";
         }
         return "없음";

@@ -24,7 +24,6 @@ public class GenerateOrderStatus {
         for(WootecoMenu food: foods){
             totalAmount += (MenuBoard.getPrice(food.getName()) * food.getCount());
         }
-
         return totalAmount;
     }
 
