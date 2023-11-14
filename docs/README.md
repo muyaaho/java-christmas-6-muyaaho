@@ -94,10 +94,11 @@
 - [x] usedBenefitController 1 가지 일만 하도록 수정
 - [x] beforeTotalAndGift 1가지 일만 하도록
 - [x] validate 클래스 분리
-- [ ] printbenefitList 만원 이하 0원가지고 수정
+- [x] printbenefitList 만원 이하 0원가지고 수정
 - [ ] test 객체 어디 만들어두기(readme 예제 2개)
 - [ ] benefitStatus에 혜택 리스트도 추가
 - [ ] BenefitStatus 쓰도록 변경(컨트롤러 사용 X)
+- [ ] "산타, 트리," 이런거 상수 만들기 
 
 ## 체크리스트
 

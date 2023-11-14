@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DiscountController {
-
-    List<Integer> weekend_mod = Arrays.asList(1,2);
+    private final List<Integer> special_days = Arrays.asList(3,10,17,24,25,31);
+    private final List<Integer> weekend_mod = Arrays.asList(1,2);
     public int getWeekdayDiscount(OrderStatus orderStatus){
         int discountAmount = 0;
         if (!weekend_mod.contains(orderStatus.day()%7)){
@@ -60,7 +60,6 @@ public class DiscountController {
     }
 
     private boolean isSpecialDay(int day){
-        List<Integer> special_days = Arrays.asList(3,10,17,24,25,31);
         return special_days.contains(day);
     }
 }

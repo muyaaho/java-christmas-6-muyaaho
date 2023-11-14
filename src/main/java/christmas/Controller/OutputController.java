@@ -1,5 +1,6 @@
 package christmas.Controller;
 
+import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.Record.OrderStatus;
 import christmas.Domain.Record.WootecoMenu;
 import java.util.Map;
@@ -17,16 +18,16 @@ public class OutputController {
         return "없음";
     }
 
-    public String giftFormat(OrderStatus orderStatus){
-        if (orderStatus.canGift()){
+    public String giftFormat(OrderStatus o){
+        if (o.canGift()){
             return "샴페인 1개";
         }
         return "없음";
     }
 
-    public String benefitListFormat(int benefit, Map<String, Integer> benefitList){
-        if (benefit > 0){
-            String join = benefitList.entrySet().stream()
+    public String benefitListFormat(BenefitStatus b){
+        if (b.totalBenefitCost() > 0){
+            String join = b.benefitList().entrySet().stream()
                     .filter(f -> f.getValue() > 0)
                     .map(k -> benefitToString(k.getKey(), k.getValue()))
                     .collect(Collectors.joining("\n"));

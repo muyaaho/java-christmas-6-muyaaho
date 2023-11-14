@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     public void printBenefitList(BenefitStatus benefitStatus){
-        printTopic(BENEFIT_LIST.getMessage(), outputController.benefitListFormat(benefitStatus.totalBenefitCost(), benefitStatus.benefitList()));
+        printTopic(BENEFIT_LIST.getMessage(), outputController.benefitListFormat(benefitStatus));
     }
 
     public void printTotalBeneift(BenefitStatus benefitStatus){
