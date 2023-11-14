@@ -15,8 +15,10 @@ public class GenerateBenefitStatus {
     private static final String WEEKEND_BENEFIT = "주말 할인";
     private static final String SPECIAL_BENEFIT = "특별 할인";
     private static final String GIFT_BENEFIT = "증정 이벤트";
-    private DiscountController discountController;
-    private OrderStatus orderStatus;
+    private static final int MINIMUM_TOTAL_PAY = 10_000;
+    private static final int GIFT_BENEFIT_COST = 25_000;
+    private final DiscountController discountController;
+    private final OrderStatus orderStatus;
 
     public GenerateBenefitStatus(OrderStatus orderStatus, DiscountController discountController) {
         this.orderStatus = orderStatus;
@@ -36,7 +38,7 @@ public class GenerateBenefitStatus {
         Map<String, Integer> menus = new HashMap<>();
 
         int pay = orderStatus.totalCost();
-        if (pay < 10_000){
+        if (pay < MINIMUM_TOTAL_PAY){
             return menus;
         }
 
@@ -56,10 +58,10 @@ public class GenerateBenefitStatus {
 
     private int getFinalCost(OrderStatus orderStatus){
         int totalAmountBeforeDiscount = orderStatus.totalCost();
-        if (discountController.getGiftDiscount(orderStatus) < 25){
+        if (discountController.getGiftDiscount(orderStatus) < GIFT_BENEFIT_COST){
             return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus);
         }
-        return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus) + 25000;
+        return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus) + GIFT_BENEFIT_COST;
 
     }
 

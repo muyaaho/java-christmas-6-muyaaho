@@ -6,8 +6,8 @@ import christmas.Domain.Record.WootecoMenu;
 
 public class GenerateWootecoMenu {
 
-    private int count;
-    private String name;
+    private final int count;
+    private final String name;
 
     public GenerateWootecoMenu(String name, int count) {
         this.name = name;

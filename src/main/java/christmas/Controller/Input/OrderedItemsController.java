@@ -9,7 +9,8 @@ import java.util.List;
 
 
 public class OrderedItemsController{
-    private static final String DIVIDED = "-";
+    private static final String FIRST_SEP = ",";
+    private static final String SECOND_SEP = "-";
     Validate validate;
 
     public OrderedItemsController(Validate validate) {
@@ -22,18 +23,18 @@ public class OrderedItemsController{
     }
 
     private WootecoMenu inputToWootechMenu(String inputDividedComma){
-        String[] dividedHyphen = inputDividedComma.split(DIVIDED);
+        String[] dividedHyphen = inputDividedComma.split(SECOND_SEP);
         return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
     }
 
     private List<String> seperateComma(String inputLine){
-        List<String> dividedCommaList = Arrays.asList(inputLine.split(",", -1));
+        List<String> dividedCommaList = Arrays.asList(inputLine.split(FIRST_SEP, -1));
         return allValidate(dividedCommaList);
     }
 
     private List<String> allValidate(List<String> dividedCommaList){
         dividedCommaList.stream().forEach(s -> {
-            String[] dividedHyphen = s.split(DIVIDED);
+            String[] dividedHyphen = s.split(SECOND_SEP);
             validate.hypen(dividedHyphen);
             validate.number(dividedHyphen);
             validate.elementBlank(dividedHyphen);

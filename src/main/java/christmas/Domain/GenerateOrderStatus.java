@@ -7,9 +7,9 @@ import christmas.Domain.Record.WootecoMenu;
 import java.util.List;
 
 public class GenerateOrderStatus {
-    private int day;
-    private List<WootecoMenu> foods;
-    private int totalCost;
+    private final int day;
+    private final List<WootecoMenu> foods;
+    private final int totalCost;
 
     public GenerateOrderStatus(int day, List<WootecoMenu> foods) {
         this.day = day;

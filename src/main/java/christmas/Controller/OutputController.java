@@ -36,7 +36,6 @@ public class OutputController {
                     .collect(Collectors.joining("\n"));
             return join;
         }
-
         return NONE;
     }
 
@@ -45,7 +44,7 @@ public class OutputController {
     }
 
     private String benefitToString(String key, int value){
-        return key+": "+"-"+String.format("%,d", value)+WON;
+        return key+": "+"-"+moneyFormat(value);
     }
 
 }

@@ -1,6 +1,7 @@
 package christmas.Domain.Enum;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum MenuBoard {
     MASHROOM_SOUP("양송이수프", 6000, "APPETIZER"),
@@ -16,9 +17,9 @@ public enum MenuBoard {
     RED_WINE("레드와인",60_000, "DRINK"),
     CHAMPAGNE("샴페인", 25_000, "DRINK");
 
-    private String name;
-    private int price;
-    private String category;
+    private final String name;
+    private final int price;
+    private final String category;
 
     MenuBoard(String name, int price, String category){
         this.name = name;
@@ -30,19 +31,14 @@ public enum MenuBoard {
         return name;
     }
 
-    public int getPrice() {
-        return price;
-    }
 
     public static int getPrice(String food_name){
-        return Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null).getPrice();
-    }
-
-    public String getCategory() {
-        return category;
+        return Objects.requireNonNull(
+                Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).price;
     }
 
     public static String getCategory(String food_name){
-        return Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null).getCategory();
+        return Objects.requireNonNull(
+                Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).category;
     }
 }

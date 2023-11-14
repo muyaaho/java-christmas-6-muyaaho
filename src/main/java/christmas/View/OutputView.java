@@ -7,7 +7,7 @@ import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.Record.OrderStatus;
 
 public class OutputView {
-    OutputController outputController = new OutputController();
+    private final OutputController outputController = new OutputController();
 
     private void printTopic(String name, String output){
         System.out.println();

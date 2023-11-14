@@ -25,6 +25,7 @@ public class Process {
     }
 
     public void run(){
+        inputView.introduce();
         OrderStatus orderStatus = getOrder();
         BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
         printResult(orderStatus, benefitStatus);
