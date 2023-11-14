@@ -13,6 +13,7 @@ import christmas.View.InputView;
 import christmas.View.OutputView;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Order;
 
 public class Process {
 
@@ -68,8 +69,8 @@ public class Process {
     }
 
     private void orderedMenu(OrderStatus orderStatus){
-        outputView.printOrderedMenu();
-        orderStatus.foods().stream().forEach(s -> outputView.printString(s.toString()));
+        outputView.printOrderedMenu(orderStatus);
+
     }
 
 

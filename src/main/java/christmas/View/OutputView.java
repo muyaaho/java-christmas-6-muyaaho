@@ -1,55 +1,45 @@
 package christmas.View;
 
 import christmas.Controller.OutputController;
+import christmas.Domain.OrderStatus;
 import java.util.Map;
 
 public class OutputView {
     OutputController outputController = new OutputController();
 
-    public void printOrderedMenu(){
+    private void printTopic(String name, String output){
         System.out.println();
-        System.out.println("<주문 메뉴>");
+        System.out.println("<"+name+">");
+        System.out.println(output);
+    }
+
+    public void printOrderedMenu(OrderStatus orderStatus){
+        printTopic("주문 메뉴", outputController.menuFormat(orderStatus));
+
     }
 
     public void printBeforeDiscount(int pay){
-        System.out.println();
-        System.out.println("<할인 전 총주문 금액>");
-        System.out.printf(outputController.moneyFormat(pay));
+        printTopic("할인 전 총주문 금액", outputController.moneyFormat(pay));
     }
 
-    // TODO: controller를 안에서 다 하고 여기는 출력만 하던가
     public void printGift(boolean gift){
-        System.out.println();
-        System.out.println("<증정 메뉴>");
-        System.out.println(outputController.giftFormat(gift));
+        printTopic("증정 메뉴", outputController.giftFormat(gift));
     }
 
     public void printBenefitList(int benefit, Map<String, Integer> benefitList){
-        System.out.println();
-        System.out.println("<혜택 내역>");
-        System.out.println(outputController.benefitListFormat(benefit, benefitList));
+        printTopic("혜택 내역", outputController.benefitListFormat(benefit, benefitList));
     }
 
     public void printTotalBeneift(int benefit){
-        System.out.println();
-        System.out.println("<총혜택 금액>");
-        System.out.println(outputController.benefitFormat(benefit));
+        printTopic("총혜택 금액", outputController.benefitFormat(benefit));
     }
 
     public void printFinalCost(int pay){
-        System.out.println();
-        System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(outputController.moneyFormat(pay));
+        printTopic("할인 후 예상 결제 금액", outputController.moneyFormat(pay));
     }
 
     public void printBadge(String badge){
-        System.out.println();
-        System.out.println("<12월 이벤트 배지>");
-        System.out.println(badge);
-    }
-
-    public void printString(String toString){
-        System.out.println(toString);
+        printTopic("12월 이벤트 배지", badge);
     }
 
 }

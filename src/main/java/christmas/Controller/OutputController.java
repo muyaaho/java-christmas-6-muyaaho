@@ -1,5 +1,7 @@
 package christmas.Controller;
 
+import christmas.Domain.OrderStatus;
+import christmas.Domain.WootecoMenu;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,10 @@ public class OutputController {
         }
 
         return "없음";
+    }
+
+    public String menuFormat(OrderStatus orderStatus){
+        return orderStatus.foods().stream().map(WootecoMenu::toString).collect(Collectors.joining("\n"));
     }
 
     private String benefitToString(String key, int value){
