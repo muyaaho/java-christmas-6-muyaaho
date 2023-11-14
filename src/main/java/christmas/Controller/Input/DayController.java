@@ -2,7 +2,7 @@ package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 
-import christmas.CustomException;
+import christmas.Exception.DayException;
 
 public class DayController {
     private int day;
@@ -20,7 +20,7 @@ public class DayController {
 
     private void validate1stTo31st(int day){
         if (day < 1 || day > 31) {
-            new CustomException("날짜");
+            throw new DayException();
         }
     }
 
@@ -28,7 +28,7 @@ public class DayController {
         try{
             parseInt(day);
         } catch(NumberFormatException e){
-            new CustomException("날짜");
+            throw new DayException();
         }
     }
 }
