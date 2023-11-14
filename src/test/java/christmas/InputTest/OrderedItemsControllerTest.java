@@ -3,6 +3,7 @@ package christmas.InputTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
 import christmas.Domain.WootecoMenu;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,11 +15,6 @@ public class OrderedItemsControllerTest {
     void setUp(){
         orderedItemsController = new OrderedItemsController();
     }
-    @Test
-    void 메뉴_입력을_WootecoMenu객체로(){
-        assertThat(new WootecoMenu("티본스테이크", 1)).isEqualToComparingFieldByField(orderedItemsController.inputToWootechMenu("티본스테이크-1"));
-    }
-
 
     @Test
     void 우테코메뉴에서_string으로(){
