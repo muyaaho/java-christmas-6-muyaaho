@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class OutputController {
     public String moneyFormat(int pay){
-        return String.format("%,d", pay)+"원\n";
+        return String.format("%,d", pay)+"원";
     }
 
     public String benefitFormat(int pay){

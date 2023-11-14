@@ -87,7 +87,7 @@
 - [x] 중복으로 묻는 부분도 메소드로 만들기
 - [x] WootecoMenu record 생성
 - [ ] 다양한 테스트 케이스 생성
-- [ ] OutputView 상수 생성
+- [x] OutputView 상수 생성
 - [ ] process 메소드 한 가지 일만 하도록
 - [ ] orderStatus 다시 한번 생각해보기
 - [ ] 생성 안에 생성하는거 개선해보기
