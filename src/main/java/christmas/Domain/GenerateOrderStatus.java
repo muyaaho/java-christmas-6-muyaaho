@@ -9,24 +9,24 @@ import java.util.List;
 public class GenerateOrderStatus {
     private final int day;
     private final List<WootecoMenu> foods;
-    private final int totalCost;
+    private final int totalPrice;
 
     public GenerateOrderStatus(int day, List<WootecoMenu> foods) {
         this.day = day;
         this.foods = foods;
-        this.totalCost = totalAmountBeforeDiscount();
+        this.totalPrice = totalPriceBeforeDiscount();
     }
 
     public OrderStatus generate(){
-        return new OrderStatus(day, foods, totalCost);
+        return new OrderStatus(day, foods, totalPrice);
     }
 
-    private int totalAmountBeforeDiscount(){
-        int totalAmount = 0;
+    private int totalPriceBeforeDiscount(){
+        int totalPrice = 0;
         for(WootecoMenu food: foods){
-            totalAmount += (MenuBoard.getPrice(food.name()) * food.count());
+            totalPrice += (MenuBoard.getPrice(food.name()) * food.count());
         }
-        return totalAmount;
+        return totalPrice;
     }
 
 }

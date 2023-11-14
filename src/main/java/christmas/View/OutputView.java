@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public void printBeforeDiscount(OrderStatus orderStatus){
-        printTopic(BEFORE_DISCOUNT.getMessage(), outputController.moneyFormat(orderStatus.totalCost()));
+        printTopic(BEFORE_DISCOUNT.getMessage(), outputController.moneyFormat(orderStatus.totalPrice()));
     }
 
     public void printGift(OrderStatus orderStatus){
@@ -37,11 +37,11 @@ public class OutputView {
     }
 
     public void printTotalBeneift(BenefitStatus benefitStatus){
-        printTopic(TOTAL_BENEFIT.getMessage(), outputController.benefitFormat(benefitStatus.totalBenefitCost()));
+        printTopic(TOTAL_BENEFIT.getMessage(), outputController.benefitFormat(benefitStatus.totalBenefit()));
     }
 
     public void printFinalCost(BenefitStatus benefitStatus){
-        printTopic(FINAL_COST.getMessage(), outputController.moneyFormat(benefitStatus.finalCost()));
+        printTopic(FINAL_COST.getMessage(), outputController.moneyFormat(benefitStatus.finalPrice()));
     }
 
     public void printBadge(BenefitStatus benefitStatus){

@@ -27,18 +27,18 @@ public class GenerateBenefitStatus {
 
     public BenefitStatus generate(){
         Map<String, Integer> benefitList = getBenefitList(orderStatus);
-        int totalBenefitCost = getTotalBenefitAmount(orderStatus);
-        int finalCost = getFinalCost(orderStatus);
+        int totalBenefit = getTotalBenefit(orderStatus);
+        int finalPrice = getFinalCost(orderStatus);
         String badge = getBadge(orderStatus);
-        return new BenefitStatus(benefitList, totalBenefitCost, finalCost, badge);
+        return new BenefitStatus(benefitList, totalBenefit, finalPrice, badge);
     }
 
 
     private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         Map<String, Integer> menus = new HashMap<>();
 
-        int pay = orderStatus.totalCost();
-        if (pay < MINIMUM_TOTAL_PAY){
+        int price = orderStatus.totalPrice();
+        if (price < MINIMUM_TOTAL_PAY){
             return menus;
         }
 
@@ -51,22 +51,22 @@ public class GenerateBenefitStatus {
         return menus;
     }
 
-    private int getTotalBenefitAmount(OrderStatus orderStatus){
+    private int getTotalBenefit(OrderStatus orderStatus){
         Map<String, Integer> menus = getBenefitList(orderStatus);
         return menus.values().stream().mapToInt(i->i).sum();
     }
 
     private int getFinalCost(OrderStatus orderStatus){
-        int totalAmountBeforeDiscount = orderStatus.totalCost();
+        int totalPrice = orderStatus.totalPrice();
         if (discountController.getGiftDiscount(orderStatus) < GIFT_BENEFIT_COST){
-            return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus);
+            return totalPrice - getTotalBenefit(orderStatus);
         }
-        return totalAmountBeforeDiscount - getTotalBenefitAmount(orderStatus) + GIFT_BENEFIT_COST;
+        return totalPrice - getTotalBenefit(orderStatus) + GIFT_BENEFIT_COST;
 
     }
 
     private String getBadge(OrderStatus orderStatus){
-        int benefit = getTotalBenefitAmount(orderStatus);
+        int benefit = getTotalBenefit(orderStatus);
         if (benefit >= MORE_20000.getPay()){
             return MORE_20000.getBadge();
         }

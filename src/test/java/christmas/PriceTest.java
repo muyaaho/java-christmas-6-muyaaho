@@ -28,8 +28,8 @@ public class PriceTest {
                 makeMenu("초코케이크", 2),
                 makeMenu("제로콜라", 1));
 
-        assertEquals(makeInput(input).totalCost(), 8500);
-        assertEquals(makeInput(input2).totalCost(), 142000);
+        assertEquals(makeInput(input).totalPrice(), 8500);
+        assertEquals(makeInput(input2).totalPrice(), 142000);
     }
 
     private WootecoMenu makeMenu(String name, int count){

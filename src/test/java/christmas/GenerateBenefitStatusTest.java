@@ -116,17 +116,17 @@ public class GenerateBenefitStatusTest {
 
     @Test
     void 총혜택_금액(){
-        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).totalBenefitCost(), 31246);
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).totalBenefit(), 31246);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인X(){
-        assertEquals(makeBenefit(makeOrder(3, noBenefitInput)).finalCost(), 8500);
+        assertEquals(makeBenefit(makeOrder(3, noBenefitInput)).finalPrice(), 8500);
     }
 
     @Test
     void 할인_후_예상_결제_금액_할인O(){
-        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).finalCost(), 135754);
+        assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).finalPrice(), 135754);
     }
 
     @Test

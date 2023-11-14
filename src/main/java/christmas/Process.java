@@ -44,8 +44,8 @@ public class Process {
 
     private OrderStatus getOrder(){
         int day = getDay(new DayController());
-        List<WootecoMenu> orderedMenu = getFoods(new OrderedItemsController(validate));
-        return new GenerateOrderStatus(day, orderedMenu).generate();
+        List<WootecoMenu> foods = getFoods(new OrderedItemsController(validate));
+        return new GenerateOrderStatus(day, foods).generate();
     }
 
     private int getDay(DayController dayController){

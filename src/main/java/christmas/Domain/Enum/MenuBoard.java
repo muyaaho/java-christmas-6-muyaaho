@@ -31,7 +31,6 @@ public enum MenuBoard {
         return name;
     }
 
-
     public static int getPrice(String food_name){
         return Objects.requireNonNull(
                 Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).price;

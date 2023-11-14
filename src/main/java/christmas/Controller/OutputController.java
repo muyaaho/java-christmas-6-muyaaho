@@ -3,20 +3,19 @@ package christmas.Controller;
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.Record.OrderStatus;
 import christmas.Domain.Record.WootecoMenu;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputController {
     private static final String NONE = "없음";
     private static final String GIFT = "샴페인 1개";
     private static final String WON = "원";
-    public String moneyFormat(int pay){
-        return String.format("%,d", pay)+WON;
+    public String moneyFormat(int price){
+        return String.format("%,d", price)+WON;
     }
 
-    public String benefitFormat(int pay){
-        if (pay > 0){
-            return "-"+moneyFormat(pay);
+    public String benefitFormat(int price){
+        if (price > 0){
+            return "-"+moneyFormat(price);
         }
         return NONE;
     }
@@ -29,7 +28,7 @@ public class OutputController {
     }
 
     public String benefitListFormat(BenefitStatus b){
-        if (b.totalBenefitCost() > 0){
+        if (b.totalBenefit() > 0){
             String join = b.benefitList().entrySet().stream()
                     .filter(f -> f.getValue() > 0)
                     .map(k -> benefitToString(k.getKey(), k.getValue()))
@@ -39,8 +38,8 @@ public class OutputController {
         return NONE;
     }
 
-    public String menuFormat(OrderStatus orderStatus){
-        return orderStatus.foods().stream().map(WootecoMenu::toString).collect(Collectors.joining("\n"));
+    public String menuFormat(OrderStatus o){
+        return o.foods().stream().map(WootecoMenu::toString).collect(Collectors.joining("\n"));
     }
 
     private String benefitToString(String key, int value){
