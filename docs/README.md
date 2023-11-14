@@ -88,11 +88,11 @@
 - [x] WootecoMenu record 생성
 - [ ] 다양한 테스트 케이스 생성
 - [x] OutputView 상수 생성
-- [ ] process 메소드 한 가지 일만 하도록
-- [ ] orderStatus 다시 한번 생각해보기
-- [ ] 생성 안에 생성하는거 개선해보기
-- [ ] usedBenefitController 1 가지 일만 하도록 수정
-- [ ] beforeTotalAndGift 1가지 일만 하도록
+- [x] process 메소드 한 가지 일만 하도록
+- [x] orderStatus 다시 한번 생각해보기
+- [x] 생성 안에 생성하는거 개선해보기
+- [x] usedBenefitController 1 가지 일만 하도록 수정
+- [x] beforeTotalAndGift 1가지 일만 하도록
 - [ ] printbenefitList 만원 이하 0원가지고 수정
 - [ ] test 객체 어디 만들어두기(readme 예제 2개)
 - [ ] benefitStatus에 혜택 리스트도 추가
@@ -100,6 +100,7 @@
 
 ## 체크리스트
 
+- [ ] 만들어진 메소드 이름, 필드 이름 정리해본다
 - [ ]  main 브랜치에 작성했는지 확인한다
 - [ ]  의미없는 주석은 삭제한다
 - [ ]  한 함수의 길이가 공백 포함해서 15라인 넘어가는지 확인한다

@@ -2,7 +2,9 @@ package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 
+import christmas.Domain.GenerateWootecoMenu;
 import christmas.Domain.MenuBoard;
+import christmas.Domain.Record.WootecoMenu;
 import christmas.Exception.MenuException;
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +16,18 @@ import java.util.stream.Stream;
 public class OrderedItemsController {
     private final Set<String> foodList = Stream.of(MenuBoard.values()).map(MenuBoard::getName).collect(Collectors.toSet());
 
+    public List<WootecoMenu> setOrderedMenu(String line){
+        List<String> dividedCommaList = seperateComma(line);
+        return dividedCommaList.stream().map(this::inputToWootechMenu).toList();
+    }
+
+    public WootecoMenu inputToWootechMenu(String inputDividedComma){
+        String[] dividedHyphen = inputDividedComma.split("-");
+        return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
+    }
+
     // TODO[네이밍]: seperateComma말고 다른 이름..?
-    public List<String> seperateComma(String inputLine){
+    private List<String> seperateComma(String inputLine){
         List<String> dividedCommaList = Arrays.asList(inputLine.split(",", -1));
         return validate(dividedCommaList);
     }
