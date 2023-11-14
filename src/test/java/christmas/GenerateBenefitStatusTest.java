@@ -37,7 +37,7 @@ public class GenerateBenefitStatusTest {
         return new GenerateWootecoMenu(name, count).generateor();
     }
 
-    public Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){
+    private Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){
         Map<String, Integer> output = new HashMap<>();
         output.put("크리스마스 디데이 할인", christMas);
         output.put("평일 할인", weekday);
@@ -47,23 +47,22 @@ public class GenerateBenefitStatusTest {
         return output;
     }
 
-    public OrderStatus makeOrder(int day, List<WootecoMenu> input){
+    private OrderStatus makeOrder(int day, List<WootecoMenu> input){
         return new GenerateOrderStatus(day, input).generate();
     }
 
-    // TODO BenefitStatus 만드는 함수 부터 시작!!!
-    public BenefitStatus makeBenefit(OrderStatus orderStatus){
+    private BenefitStatus makeBenefit(OrderStatus orderStatus){
         return new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
     }
 
     @Test
     void 적용된_이벤트_없음(){
         BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput), new DiscountController()).generate();
-        assertEquals(benefitStatus.benefitList(), new HashMap<String, Integer>());
-
         List<WootecoMenu> orderedItems2 = List.of(
                 makeMenu("시저샐러드", 1)
         );
+
+        assertEquals(benefitStatus.benefitList(), new HashMap<String, Integer>());
         assertEquals(makeBenefit(makeOrder(1, orderedItems2)).benefitList(), new HashMap<String, Integer>());
     }
 
@@ -73,6 +72,7 @@ public class GenerateBenefitStatusTest {
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)
         );
+
         assertEquals(makeBenefit(makeOrder(4, orderedItems)).benefitList(), output);
 
     }
@@ -83,6 +83,7 @@ public class GenerateBenefitStatusTest {
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("초코케이크", 1)
         );
+
         assertEquals(makeBenefit(makeOrder(31, orderedItems)).benefitList(), output);
     }
 
@@ -92,6 +93,7 @@ public class GenerateBenefitStatusTest {
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)
         );
+
         assertEquals(makeBenefit(makeOrder(30, orderedItems)).benefitList(), output);
     }
 
@@ -101,12 +103,14 @@ public class GenerateBenefitStatusTest {
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)
         );
+
         assertEquals(makeBenefit(makeOrder(31, orderedItems)).benefitList(), output);
     }
 
     @Test
     void 전체_증정이벤트(){
         Map<String, Integer> output = makeOutput(1200, 4046, 0, 1000, 25000);
+
         assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).benefitList(), output);
     }
 

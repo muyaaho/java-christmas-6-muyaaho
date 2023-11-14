@@ -5,6 +5,8 @@ import static java.lang.Integer.parseInt;
 import christmas.Exception.DayException;
 
 public class DayController {
+    private static final int DEC_START = 1;
+    private static final int DEC_END = 31;
     public int getDay(String day) {
         validateDay(day);
         int convertDay = parseInt(day);
@@ -13,7 +15,7 @@ public class DayController {
     }
 
     private void validate1stTo31st(int day){
-        if (day < 1 || day > 31) {
+        if (day < DEC_START || day > DEC_END) {
             throw new DayException();
         }
     }

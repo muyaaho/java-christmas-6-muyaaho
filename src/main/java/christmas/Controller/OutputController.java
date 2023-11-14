@@ -7,22 +7,25 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputController {
+    private static final String NONE = "없음";
+    private static final String GIFT = "샴페인 1개";
+    private static final String WON = "원";
     public String moneyFormat(int pay){
-        return String.format("%,d", pay)+"원";
+        return String.format("%,d", pay)+WON;
     }
 
     public String benefitFormat(int pay){
         if (pay > 0){
             return "-"+moneyFormat(pay);
         }
-        return "없음";
+        return NONE;
     }
 
     public String giftFormat(OrderStatus o){
         if (o.canGift()){
-            return "샴페인 1개";
+            return GIFT;
         }
-        return "없음";
+        return NONE;
     }
 
     public String benefitListFormat(BenefitStatus b){
@@ -34,7 +37,7 @@ public class OutputController {
             return join;
         }
 
-        return "없음";
+        return NONE;
     }
 
     public String menuFormat(OrderStatus orderStatus){
@@ -42,7 +45,7 @@ public class OutputController {
     }
 
     private String benefitToString(String key, int value){
-        return key+": "+"-"+String.format("%,d", value)+"원";
+        return key+": "+"-"+String.format("%,d", value)+WON;
     }
 
 }

@@ -1,6 +1,7 @@
 package christmas.Domain;
 
 
+import christmas.Domain.Enum.MenuBoard;
 import christmas.Domain.Record.WootecoMenu;
 
 public class GenerateWootecoMenu {

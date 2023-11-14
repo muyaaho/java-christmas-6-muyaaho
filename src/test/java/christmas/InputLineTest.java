@@ -1,4 +1,4 @@
-package christmas.InputTest;
+package christmas;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.Input.OrderedItemsController;
 import christmas.Controller.Input.Validate;
+import christmas.Domain.GenerateWootecoMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,12 @@ public class InputLineTest {
     }
     private void assertMakeObj(String inputLine){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> orderedItemsController.setOrderedMenu(inputLine));
+    }
+
+    @Test
+    void 우테코메뉴에서_string으로(){
+        assertEquals(new GenerateWootecoMenu("타파스", 1).generateor().toString(), "타파스 1개");
+        assertEquals(new GenerateWootecoMenu("제로콜라", 1).generateor().toString(), "제로콜라 1개");
     }
 
     @Test

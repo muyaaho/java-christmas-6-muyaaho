@@ -1,4 +1,4 @@
-package christmas.Domain;
+package christmas.Domain.Enum;
 
 import java.util.Arrays;
 

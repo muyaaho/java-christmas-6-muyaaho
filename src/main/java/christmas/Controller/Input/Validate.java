@@ -2,7 +2,7 @@ package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 
-import christmas.Domain.MenuBoard;
+import christmas.Domain.Enum.MenuBoard;
 import christmas.Exception.MenuException;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Validate {
+
+    private static final String DIVIDED = "-";
     private final Set<String> foodList = Stream.of(MenuBoard.values()).map(MenuBoard::getName).collect(Collectors.toSet());
     public void elementBlank(String[] dividedHyphen){
         if (dividedHyphen[0].isBlank() || dividedHyphen[1].isBlank()){
@@ -51,14 +53,14 @@ public class Validate {
     }
 
     public void duplicated(List<String> dividedCommaList){
-        int cnt = dividedCommaList.stream().map(e -> e.split("-")[0]).collect(Collectors.toSet()).size();
+        int cnt = dividedCommaList.stream().map(e -> e.split(DIVIDED)[0]).collect(Collectors.toSet()).size();
         if (cnt != dividedCommaList.size()){
             throw new MenuException();
         }
     }
 
     public void foodCount(List<String> dividedCommaList){
-        int cnt = dividedCommaList.stream().map(e -> e.split("-")[1]).mapToInt(Integer::parseInt).sum();
+        int cnt = dividedCommaList.stream().map(e -> e.split(DIVIDED)[1]).mapToInt(Integer::parseInt).sum();
         if (cnt > 20){
             throw new MenuException();
         }

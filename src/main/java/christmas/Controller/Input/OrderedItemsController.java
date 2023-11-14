@@ -3,13 +3,13 @@ package christmas.Controller.Input;
 import static java.lang.Integer.parseInt;
 
 import christmas.Domain.GenerateWootecoMenu;
-import christmas.Domain.MenuBoard;
 import christmas.Domain.Record.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class OrderedItemsController{
+    private static final String DIVIDED = "-";
     Validate validate;
 
     public OrderedItemsController(Validate validate) {
@@ -22,7 +22,7 @@ public class OrderedItemsController{
     }
 
     private WootecoMenu inputToWootechMenu(String inputDividedComma){
-        String[] dividedHyphen = inputDividedComma.split("-");
+        String[] dividedHyphen = inputDividedComma.split(DIVIDED);
         return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
     }
 
@@ -33,7 +33,7 @@ public class OrderedItemsController{
 
     private List<String> allValidate(List<String> dividedCommaList){
         dividedCommaList.stream().forEach(s -> {
-            String[] dividedHyphen = s.split("-");
+            String[] dividedHyphen = s.split(DIVIDED);
             validate.hypen(dividedHyphen);
             validate.number(dividedHyphen);
             validate.elementBlank(dividedHyphen);

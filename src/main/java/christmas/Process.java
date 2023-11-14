@@ -25,7 +25,6 @@ public class Process {
     }
 
     public void run(){
-        // TODO: 비슷한 이름 바꾸기
         OrderStatus orderStatus = getOrder();
         BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
         printResult(orderStatus, benefitStatus);
@@ -36,7 +35,6 @@ public class Process {
         outputView.printOrderedMenu(orderStatus);
         outputView.printBeforeDiscount(orderStatus);
         outputView.printGift(orderStatus);
-        // TODO: beneiftList도 1000원 이하라면 0원이라서 outputController 수정 가능 여기 가격 안받아도 될 듯
         outputView.printBenefitList(benefitStatus);
         outputView.printTotalBeneift(benefitStatus);
         outputView.printFinalCost(benefitStatus);

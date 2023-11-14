@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.MenuBoard;
+import christmas.Domain.Enum.MenuBoard;
 import christmas.Domain.Record.OrderStatus;
 import christmas.Domain.GenerateWootecoMenu;
 import christmas.Domain.Record.WootecoMenu;
@@ -23,11 +23,12 @@ public class PriceTest {
     @Test
     void 할인_전_총주문_금액(){
         List<WootecoMenu> input = Arrays.asList(makeMenu("타파스", 1), makeMenu("제로콜라", 1));
-        assertEquals(makeInput(input).totalCost(), 8500);
         List<WootecoMenu> input2 = Arrays.asList(makeMenu("티본스테이크", 1),
                 makeMenu("바비큐립", 1),
                 makeMenu("초코케이크", 2),
                 makeMenu("제로콜라", 1));
+
+        assertEquals(makeInput(input).totalCost(), 8500);
         assertEquals(makeInput(input2).totalCost(), 142000);
     }
 
@@ -40,15 +41,15 @@ public class PriceTest {
         assertEquals(MenuBoard.getPrice("제로콜라"), 3000);
     }
 
-    //TODO: test 객체 어디 하나에 만들자..이 안되겠다
     @Test
     void 증정이벤트_샴페인_1개(){
         List<WootecoMenu> input1 = Arrays.asList(makeMenu("티본스테이크", 1),
                 makeMenu("바비큐립", 1),
                 makeMenu("초코케이크", 2),
                 makeMenu("제로콜라", 1));
-        assertTrue(makeInput(input1).canGift());
         List<WootecoMenu> input2 = Arrays.asList(makeMenu("타파스", 1), makeMenu("제로콜라", 1));
+
+        assertTrue(makeInput(input1).canGift());
         assertFalse(makeInput(input2).canGift());
     }
 }

@@ -95,14 +95,15 @@
 - [x] beforeTotalAndGift 1가지 일만 하도록
 - [x] validate 클래스 분리
 - [x] printbenefitList 만원 이하 0원가지고 수정
-- [ ] test 객체 어디 만들어두기(readme 예제 2개)
-- [ ] benefitStatus에 혜택 리스트도 추가
-- [ ] BenefitStatus 쓰도록 변경(컨트롤러 사용 X)
-- [ ] "산타, 트리," 이런거 상수 만들기 
+- [x] benefitStatus에 혜택 리스트도 추가
+- [x] BenefitStatus 쓰도록 변경(컨트롤러 사용 X)
+- [X] "산타, 트리," 배지 상수 만들기 
 
 ## 체크리스트
 
 - [ ] 만들어진 메소드 이름, 필드 이름 정리해본다
+- [ ] 상수를 public으로 구현한 부분이 있는지 확인한다.
+- [ ] price, pay, cost 통일한다.
 - [ ]  main 브랜치에 작성했는지 확인한다
 - [ ]  의미없는 주석은 삭제한다
 - [ ]  한 함수의 길이가 공백 포함해서 15라인 넘어가는지 확인한다
