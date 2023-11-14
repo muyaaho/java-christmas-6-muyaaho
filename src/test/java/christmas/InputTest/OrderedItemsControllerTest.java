@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.Input.OrderedItemsController;
+import christmas.Controller.Input.Validate;
 import christmas.Domain.GenerateWootecoMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ public class OrderedItemsControllerTest {
     OrderedItemsController orderedItemsController;
     @BeforeEach
     void setUp(){
-        orderedItemsController = new OrderedItemsController();
+        orderedItemsController = new OrderedItemsController(new Validate());
     }
 
     @Test

@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.Input.OrderedItemsController;
+import christmas.Controller.Input.Validate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class InputLineTest {
     OrderedItemsController orderedItemsController;
     @BeforeEach
     void setUp(){
-        orderedItemsController = new OrderedItemsController();
+        orderedItemsController = new OrderedItemsController(new Validate());
     }
     private void assertMakeObj(String inputLine){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> orderedItemsController.setOrderedMenu(inputLine));

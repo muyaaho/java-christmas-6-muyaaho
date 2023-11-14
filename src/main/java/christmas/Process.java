@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.Controller.Input.Validate;
 import christmas.Domain.GenerateBenefitStatus;
 import christmas.Controller.DiscountController;
 import christmas.Controller.Input.DayController;
@@ -16,10 +17,11 @@ public class Process {
 
     InputView inputView;
     OutputView outputView;
-
-    public Process(InputView inputView, OutputView outputView){
+    Validate validate;
+    public Process(InputView inputView, OutputView outputView, Validate validate){
         this.inputView = inputView;
         this.outputView = outputView;
+        this.validate = validate;
     }
 
     public void run(){
@@ -43,7 +45,7 @@ public class Process {
 
     private OrderStatus getOrder(){
         int day = getDay(new DayController());
-        List<WootecoMenu> orderedMenu = getFoods(new OrderedItemsController());
+        List<WootecoMenu> orderedMenu = getFoods(new OrderedItemsController(validate));
         return new GenerateOrderStatus(day, orderedMenu).generate();
     }
 
@@ -64,7 +66,7 @@ public class Process {
             return orderedItemsController.setOrderedMenu(inputView.getInput());
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getFoods(new OrderedItemsController());
+            return getFoods(new OrderedItemsController(validate));
         }
     }
 }
