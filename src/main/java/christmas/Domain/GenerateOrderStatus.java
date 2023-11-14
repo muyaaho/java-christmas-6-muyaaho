@@ -1,8 +1,9 @@
 package christmas.Domain;
 
 
+import christmas.Domain.Record.OrderStatus;
+import christmas.Domain.Record.WootecoMenu;
 import java.util.List;
-import org.mockito.internal.matchers.Or;
 
 public class GenerateOrderStatus {
     private int day;
@@ -22,7 +23,7 @@ public class GenerateOrderStatus {
     private int totalAmountBeforeDiscount(){
         int totalAmount = 0;
         for(WootecoMenu food: foods){
-            totalAmount += (MenuBoard.getPrice(food.getName()) * food.getCount());
+            totalAmount += (MenuBoard.getPrice(food.name()) * food.count());
         }
         return totalAmount;
     }

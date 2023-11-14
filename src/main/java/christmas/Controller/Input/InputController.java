@@ -2,7 +2,8 @@ package christmas.Controller.Input;
 
 import static java.lang.Integer.parseInt;
 
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.GenerateWootecoMenu;
+import christmas.Domain.Record.WootecoMenu;
 import java.util.List;
 
 public class InputController {
@@ -13,7 +14,7 @@ public class InputController {
 
     public WootecoMenu inputToWootechMenu(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split("-");
-        return new WootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1]));
+        return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
     }
 
 }

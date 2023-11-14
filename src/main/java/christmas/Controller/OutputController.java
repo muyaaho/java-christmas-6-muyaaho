@@ -1,7 +1,7 @@
 package christmas.Controller;
 
-import christmas.Domain.OrderStatus;
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.Record.OrderStatus;
+import christmas.Domain.Record.WootecoMenu;
 import java.util.Map;
 import java.util.stream.Collectors;
 

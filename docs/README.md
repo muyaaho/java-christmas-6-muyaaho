@@ -85,6 +85,7 @@
 - [x] OutputView에서 가격 출력할 때 --원 -> 메소드로 만들기
 - [x] process의 run()함수를 출력되는 <> 꺽쇠 별로 메소드 만들기
 - [x] 중복으로 묻는 부분도 메소드로 만들기
+- [x] WootecoMenu record 생성
 - [ ] 다양한 테스트 케이스 생성
 - [ ] OutputView 상수 생성
 - [ ] process 메소드 한 가지 일만 하도록

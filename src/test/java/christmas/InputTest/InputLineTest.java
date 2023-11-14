@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
-import christmas.Domain.WootecoMenu;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

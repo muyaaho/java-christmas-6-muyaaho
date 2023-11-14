@@ -1,8 +1,8 @@
 package christmas.View;
 
 import christmas.Controller.OutputController;
-import christmas.Domain.BenefitStatus;
-import christmas.Domain.OrderStatus;
+import christmas.Domain.Record.BenefitStatus;
+import christmas.Domain.Record.OrderStatus;
 
 public class OutputView {
     OutputController outputController = new OutputController();

@@ -1,7 +1,6 @@
 package christmas.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.Domain.OrderStatus;
 
 public class InputView {
 

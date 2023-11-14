@@ -1,5 +1,6 @@
-package christmas.Domain;
+package christmas.Domain.Record;
 
+import christmas.Domain.GenerateWootecoMenu;
 import java.util.List;
 
 public record OrderStatus(int day, List<WootecoMenu> foods, int totalCost) {

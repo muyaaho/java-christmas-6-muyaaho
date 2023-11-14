@@ -5,14 +5,13 @@ import christmas.Controller.DiscountController;
 import christmas.Controller.Input.DayController;
 import christmas.Controller.Input.InputController;
 import christmas.Controller.Input.OrderedItemsController;
-import christmas.Domain.BenefitStatus;
+import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.OrderStatus;
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.Record.OrderStatus;
+import christmas.Domain.Record.WootecoMenu;
 import christmas.View.InputView;
 import christmas.View.OutputView;
 import java.util.List;
-import java.util.Map;
 
 public class Process {
 

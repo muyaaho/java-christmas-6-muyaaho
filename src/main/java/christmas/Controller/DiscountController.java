@@ -1,8 +1,7 @@
 package christmas.Controller;
 
-import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.OrderStatus;
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.Record.OrderStatus;
+import christmas.Domain.Record.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,15 +46,15 @@ public class DiscountController {
     }
 
     private int getDessertDiscount(WootecoMenu item){
-        if (item.getCategory().equals("DESSERT")){
-            return 2023 * item.getCount();
+        if (item.category().equals("DESSERT")){
+            return 2023 * item.count();
         }
         return 0;
     }
 
     private int getMainDiscount(WootecoMenu item){
-        if (item.getCategory().equals("MAIN")){
-            return 2023*item.getCount();
+        if (item.category().equals("MAIN")){
+            return 2023*item.count();
         }
         return 0;
     }

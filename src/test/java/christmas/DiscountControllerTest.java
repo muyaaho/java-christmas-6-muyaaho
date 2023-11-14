@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Controller.DiscountController;
 import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.OrderStatus;
-import christmas.Domain.WootecoMenu;
+import christmas.Domain.Record.OrderStatus;
+import christmas.Domain.GenerateWootecoMenu;
+import christmas.Domain.Record.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,45 +25,48 @@ public class DiscountControllerTest {
         return generateOrderStatus.generate();
     }
 
+    private List<WootecoMenu> makeList(String name, int count){
+        return List.of(new GenerateWootecoMenu(name, count).generateor());
+    }
+
     @BeforeEach
     void setUp(){
         discountController = new DiscountController();
     }
     @Test
     void 평일_평일할인(){
-        List<WootecoMenu> orderedItems = List.of(new WootecoMenu("초코케이크", 1));
-        assertEquals(discountController.getWeekdayDiscount(makeInput(3, orderedItems)), 2023);
+        assertEquals(discountController.getWeekdayDiscount(makeInput(3, makeList("초코케이크", 1))), 2023);
 
         List<WootecoMenu> orderedItems2 = Arrays.asList(
-                new WootecoMenu("초코케이크", 1),
-                new WootecoMenu("아이스크림", 1));
+                new GenerateWootecoMenu("초코케이크", 1).generateor(),
+                new GenerateWootecoMenu("아이스크림", 1).generateor());
         assertEquals(discountController.getWeekdayDiscount(makeInput(3, orderedItems2)), 4046);
     }
 
     @Test
     void 주말_평일할인(){
-        List<WootecoMenu> orderedItems = List.of(new WootecoMenu("초코케이크", 1));
+        List<WootecoMenu> orderedItems = makeList("초코케이크", 1);
         assertEquals(discountController.getWeekdayDiscount(makeInput(1, orderedItems)), 0);
     }
 
     @Test
     void 주말_주말할인(){
-        List<WootecoMenu> orderedItems = List.of(new WootecoMenu("티본스테이크", 1));
+        List<WootecoMenu> orderedItems = makeList("티본스테이크", 1);
         assertEquals(discountController.getWeekendDiscount(makeInput(15, orderedItems)), 2023);
         List<WootecoMenu> orderedItems2 = List.of(
-                new WootecoMenu("티본스테이크", 1),
-                new WootecoMenu("레드와인", 1));
+                new GenerateWootecoMenu("티본스테이크", 1).generateor(),
+                new GenerateWootecoMenu("레드와인", 1).generateor());
         assertEquals(discountController.getWeekendDiscount(makeInput(15, orderedItems2)), 2023);
 
         List<WootecoMenu> orderedItems3 = List.of(
-                new WootecoMenu("티본스테이크", 2),
-                new WootecoMenu("레드와인", 1));
+                new GenerateWootecoMenu("티본스테이크", 2).generateor(),
+                new GenerateWootecoMenu("레드와인", 1).generateor());
         assertEquals(discountController.getWeekendDiscount(makeInput(15, orderedItems3)), 4046);
     }
 
     @Test
     void 평일_주말할인(){
-        List<WootecoMenu> orderedItems = List.of(new WootecoMenu("티본스테이크", 1));
+        List<WootecoMenu> orderedItems = List.of(new GenerateWootecoMenu("티본스테이크", 1).generateor());
         assertEquals(discountController.getWeekendDiscount(makeInput(4, orderedItems)), 0);
     }
 

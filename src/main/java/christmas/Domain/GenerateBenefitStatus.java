@@ -1,6 +1,8 @@
 package christmas.Domain;
 
 import christmas.Controller.DiscountController;
+import christmas.Domain.Record.BenefitStatus;
+import christmas.Domain.Record.OrderStatus;
 import java.util.HashMap;
 import java.util.Map;
 
