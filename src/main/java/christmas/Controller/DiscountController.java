@@ -55,16 +55,16 @@ public class DiscountController {
         return 0;
     }
 
-    private int getDessertDiscount(WootecoMenu item){
-        if (item.category().equals("DESSERT")){
-            return WEEKEND_DISCOUNT * item.count();
+    private int getDessertDiscount(WootecoMenu food){
+        if (food.category().equals("DESSERT")){
+            return WEEKEND_DISCOUNT * food.count();
         }
         return 0;
     }
 
-    private int getMainDiscount(WootecoMenu item){
-        if (item.category().equals("MAIN")){
-            return WEEKDAY_DISCOUNT*item.count();
+    private int getMainDiscount(WootecoMenu food){
+        if (food.category().equals("MAIN")){
+            return WEEKDAY_DISCOUNT*food.count();
         }
         return 0;
     }
