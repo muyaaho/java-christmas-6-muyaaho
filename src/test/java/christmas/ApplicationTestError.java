@@ -7,6 +7,16 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 public class ApplicationTestError extends NsTest {
+
+    @Test
+    void 음료만_주문(){
+        assertSimpleTest(() -> {
+            runException("25", "레드와인-2");
+            assertThat(output()).contains(
+                    "[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요"
+            );
+        });
+    }
     @Test
     void 음식_공백(){
         assertSimpleTest(() -> {

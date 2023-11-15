@@ -65,4 +65,14 @@ public class Validate {
             throw new MenuException();
         }
     }
+
+    public void onlyDrink(List<String> dividedCommaList){
+        int drinkCount = (int) dividedCommaList.stream().map(s -> {
+            String[] dividedHyphen = s.split("-");
+            return MenuBoard.getCategory(dividedHyphen[0]);
+        }).count();
+        if (drinkCount == dividedCommaList.size()){
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요");
+        }
+    }
 }

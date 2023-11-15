@@ -44,6 +44,7 @@ public class FoodsController {
         validate.blank(dividedCommaList);
         validate.duplicated(dividedCommaList);
         validate.foodCount(dividedCommaList);
+        validate.onlyDrink(dividedCommaList);
         return dividedCommaList;
     }
 
