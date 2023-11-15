@@ -46,7 +46,7 @@ public class Validate {
     }
 
     public void blank(List<String> divitedCommaList) {
-        int blankCount = (int)divitedCommaList.stream().filter(e -> e.isBlank()).count();
+        int blankCount = (int)divitedCommaList.stream().filter(String::isBlank).count();
         if (blankCount>0){
             throw new MenuException();
         }

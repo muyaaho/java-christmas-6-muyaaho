@@ -29,11 +29,10 @@ public class OutputController {
 
     public String benefitListFormat(BenefitStatus b){
         if (b.totalBenefit() > 0){
-            String join = b.benefitList().entrySet().stream()
+            return b.benefitList().entrySet().stream()
                     .filter(f -> f.getValue() > 0)
                     .map(k -> benefitToString(k.getKey(), k.getValue()))
                     .collect(Collectors.joining("\n"));
-            return join;
         }
         return NONE;
     }

@@ -33,7 +33,7 @@ public class FoodsController {
     }
 
     private List<String> allValidate(List<String> dividedCommaList){
-        dividedCommaList.stream().forEach(s -> {
+        dividedCommaList.forEach(s -> {
             String[] dividedHyphen = s.split(SECOND_SEP);
             validate.hypen(dividedHyphen);
             validate.number(dividedHyphen);
