@@ -70,7 +70,7 @@ public class Validate {
         int drinkCount = (int) dividedCommaList.stream().map(s -> {
             String[] dividedHyphen = s.split("-");
             return MenuBoard.getCategory(dividedHyphen[0]);
-        }).count();
+        }).filter(s -> s.equals("DRINK")).count();
         if (drinkCount == dividedCommaList.size()){
             throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요");
         }
