@@ -1,6 +1,6 @@
 package christmas;
 
-import christmas.Controller.Input.Validate;
+import christmas.Controller.Validate;
 import christmas.View.InputView;
 import christmas.View.OutputView;
 

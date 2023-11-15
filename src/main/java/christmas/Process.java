@@ -1,9 +1,9 @@
 package christmas;
 
-import christmas.Controller.Input.FoodsController;
-import christmas.Controller.Input.Validate;
+import christmas.Controller.FoodsController;
+import christmas.Controller.Validate;
 import christmas.Domain.GenerateBenefitStatus;
-import christmas.Controller.Input.DayController;
+import christmas.Controller.DayController;
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.GenerateOrderStatus;
 import christmas.Domain.Record.OrderStatus;
