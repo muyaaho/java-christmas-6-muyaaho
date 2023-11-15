@@ -98,7 +98,7 @@ public class ApplicationTestError extends NsTest {
     }
 
     @Test
-    void 음식_예외(){
+    void 음식_메뉴에없음(){
         assertSimpleTest(() -> {
             runException("25", "마라탕-2,피자-2,맥주-1");
             assertThat(output()).contains(
@@ -112,6 +112,21 @@ public class ApplicationTestError extends NsTest {
                     "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
             );
         });
+    }
+
+    @Test
+    void 음식_20개초과(){
+        assertSimpleTest(() -> {
+            run("25", "티본스테이크-10,초코케이크-10");
+            assertThat(output()).contains("초코케이크 10개", "티본스테이크 10개");
+        });
+        assertSimpleTest(() -> {
+            runException("25", "티본스테이크-10,초코케이크-11");
+            assertThat(output()).contains(
+                    "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+            );
+        });
+
     }
 
     @Test

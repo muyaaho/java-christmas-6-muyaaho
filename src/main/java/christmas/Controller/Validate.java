@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 public class Validate {
 
     private static final String DIVIDED = "-";
+    private static final int TOTAL_COUNT = 20;
     private final Set<String> foodList = Stream.of(MenuBoard.values()).map(MenuBoard::getName).collect(Collectors.toSet());
     public void elementBlank(String[] dividedHyphen){
         if (dividedHyphen[0].isBlank() || dividedHyphen[1].isBlank()){
@@ -61,7 +62,7 @@ public class Validate {
 
     public void foodCount(List<String> dividedCommaList){
         int cnt = dividedCommaList.stream().map(e -> e.split(DIVIDED)[1]).mapToInt(Integer::parseInt).sum();
-        if (cnt > 20){
+        if (cnt > TOTAL_COUNT){
             throw new MenuException();
         }
     }
