@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
-    // TODO: 다양한 테스트 케이스 만들어서 해보기!
     @Test
     void 모든_타이틀_출력() {
         assertSimpleTest(() -> {

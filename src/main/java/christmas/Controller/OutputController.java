@@ -38,8 +38,8 @@ public class OutputController {
         return NONE;
     }
 
-    public String menuFormat(OrderStatus o){
-        return o.foods().stream().map(WootecoMenu::toString).collect(Collectors.joining("\n"));
+    public String foodListFormat(OrderStatus o){
+        return o.foodList().stream().map(WootecoMenu::toString).collect(Collectors.joining("\n"));
     }
 
     private String benefitToString(String key, int value){

@@ -1,10 +1,10 @@
 package christmas;
 
+import christmas.Controller.Input.FoodsController;
 import christmas.Controller.Input.Validate;
 import christmas.Domain.GenerateBenefitStatus;
 import christmas.Controller.DiscountController;
 import christmas.Controller.Input.DayController;
-import christmas.Controller.Input.OrderedItemsController;
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.GenerateOrderStatus;
 import christmas.Domain.Record.OrderStatus;
@@ -26,7 +26,7 @@ public class Process {
 
     public void run(){
         inputView.introduce();
-        OrderStatus orderStatus = getOrder();
+        OrderStatus orderStatus = getOrderStatus();
         BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
         printResult(orderStatus, benefitStatus);
     }
@@ -42,9 +42,9 @@ public class Process {
         outputView.printBadge(benefitStatus);
     }
 
-    private OrderStatus getOrder(){
+    private OrderStatus getOrderStatus(){
         int day = getDay(new DayController());
-        List<WootecoMenu> foods = getFoods(new OrderedItemsController(validate));
+        List<WootecoMenu> foods = getFoods(new FoodsController(validate));
         return new GenerateOrderStatus(day, foods).generate();
     }
 
@@ -58,14 +58,13 @@ public class Process {
         }
     }
 
-    // TODO: 이름 OrderedItemsController
-    private List<WootecoMenu> getFoods(OrderedItemsController orderedItemsController){
+    private List<WootecoMenu> getFoods(FoodsController foodsController){
         try{
             inputView.printAskMenu();
-            return orderedItemsController.setOrderedMenu(inputView.getInput());
+            return foodsController.setOrderedMenu(inputView.getInput());
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getFoods(new OrderedItemsController(validate));
+            return getFoods(new FoodsController(validate));
         }
     }
 }

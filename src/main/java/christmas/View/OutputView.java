@@ -20,8 +20,7 @@ public class OutputView {
     }
 
     public void printOrderedMenu(OrderStatus orderStatus){
-        printTopic(ORDERED_MENU.getMessage(), outputController.menuFormat(orderStatus));
-
+        printTopic(ORDERED_MENU.getMessage(), outputController.foodListFormat(orderStatus));
     }
 
     public void printBeforeDiscount(OrderStatus orderStatus){

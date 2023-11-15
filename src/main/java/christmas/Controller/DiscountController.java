@@ -21,7 +21,7 @@ public class DiscountController {
     public int getWeekdayDiscount(OrderStatus orderStatus){
         int discountAmount = 0;
         if (!WEEKEND_MOD.contains(orderStatus.day()%WEEK_DAYS_COUNT)){
-            discountAmount = orderStatus.foods().stream().map(this::getDessertDiscount).mapToInt(i->i).sum();
+            discountAmount = orderStatus.foodList().stream().map(this::getDessertDiscount).mapToInt(i->i).sum();
         }
         return discountAmount;
     }
@@ -29,7 +29,7 @@ public class DiscountController {
     public int getWeekendDiscount(OrderStatus orderStatus){
         int discountAmount = 0;
         if (WEEKEND_MOD.contains(orderStatus.day()%WEEK_DAYS_COUNT)){
-            discountAmount = orderStatus.foods().stream().map(this::getMainDiscount).mapToInt(i->i).sum();
+            discountAmount = orderStatus.foodList().stream().map(this::getMainDiscount).mapToInt(i->i).sum();
         }
         return discountAmount;
     }

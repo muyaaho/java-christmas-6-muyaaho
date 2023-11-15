@@ -36,18 +36,15 @@ public class GenerateBenefitStatus {
 
     private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         Map<String, Integer> menus = new HashMap<>();
-
         int price = orderStatus.totalPrice();
         if (price < MINIMUM_TOTAL_PAY){
             return menus;
         }
-
         menus.put(CHRISTMAS_BENEFIT, discountController.getX_masDiscount(orderStatus.day()));
         menus.put(WEEKDAY_BENEFIT, discountController.getWeekdayDiscount(orderStatus));
         menus.put(WEEKEND_BENEFIT, discountController.getWeekendDiscount(orderStatus));
         menus.put(SPECIAL_BENEFIT, discountController.getSpecialDiscount(orderStatus.day()));
         menus.put(GIFT_BENEFIT, discountController.getGiftDiscount(orderStatus));
-
         return menus;
     }
 

@@ -56,7 +56,7 @@ public class GenerateBenefitStatusTest {
     }
 
     @Test
-    void 적용된_이벤트_없음(){
+    void 이벤트_없음(){
         BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput), new DiscountController()).generate();
         List<WootecoMenu> orderedItems2 = List.of(
                 makeMenu("시저샐러드", 1)
@@ -67,7 +67,7 @@ public class GenerateBenefitStatusTest {
     }
 
     @Test
-    void 적용된_이벤트_크리스마스디데이할인(){
+    void 크리스마스디데이할인(){
         Map<String, Integer> output = makeOutput(1300, 0, 0, 0, 0);
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)
@@ -78,7 +78,7 @@ public class GenerateBenefitStatusTest {
     }
 
     @Test
-    void 적용된_이벤트_평일할인(){
+    void 평일할인(){
         Map<String, Integer> output = makeOutput(0, 2023, 0, 1000, 0);
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("초코케이크", 1)
@@ -88,7 +88,7 @@ public class GenerateBenefitStatusTest {
     }
 
     @Test
-    void 적용된_이벤트_주말할인(){
+    void 주말할인(){
         Map<String, Integer> output = makeOutput(0, 0, 2023, 0, 0);
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)
@@ -98,7 +98,7 @@ public class GenerateBenefitStatusTest {
     }
 
     @Test
-    void 특별할인만(){
+    void 특별할인(){
         Map<String, Integer> output = makeOutput(0, 0, 0, 1000, 0);
         List<WootecoMenu> orderedItems = List.of(
                 makeMenu("티본스테이크", 1)

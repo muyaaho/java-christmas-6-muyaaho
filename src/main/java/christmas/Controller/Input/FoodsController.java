@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class OrderedItemsController{
+public class FoodsController {
     private static final String FIRST_SEP = ",";
     private static final String SECOND_SEP = "-";
     Validate validate;
 
-    public OrderedItemsController(Validate validate) {
+    public FoodsController(Validate validate) {
         this.validate = validate;
     }
 

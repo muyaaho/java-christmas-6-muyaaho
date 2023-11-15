@@ -28,24 +28,24 @@ public class DateTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"41", "0", "-1", "32"})
-    void 날짜는_1_이상_31_이하가_아닌_숫자들(String day){
+    void 날짜에_포함되지_않은_숫자_예외(String day){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> dayController.getDay(day)).withMessage(ERROR_MESSAGE);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"a1234", "aaaa", "."})
-    void 날짜에_문자_예외처리(String input){
+    void 날짜에_문자_입력_예외(String input){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> dayController.getDay(input)).withMessage(ERROR_MESSAGE);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\n", "\t"})
-    void 공백_예외처리(String blank){
+    void 공백_예외(String blank){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> dayController.getDay(blank)).withMessage(ERROR_MESSAGE);
     }
 
     @Test
-    void null_예외처리(){
+    void null_예외(){
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> dayController.getDay(null)).withMessage(ERROR_MESSAGE);
     }
 

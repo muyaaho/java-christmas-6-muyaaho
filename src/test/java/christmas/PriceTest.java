@@ -20,6 +20,10 @@ public class PriceTest {
         return generateOrderStatus.generate();
     }
 
+    private WootecoMenu makeMenu(String name, int count){
+        return new GenerateWootecoMenu(name, count).generateor();
+    }
+
     @Test
     void 할인_전_총주문_금액(){
         List<WootecoMenu> input = Arrays.asList(makeMenu("타파스", 1), makeMenu("제로콜라", 1));
@@ -30,10 +34,6 @@ public class PriceTest {
 
         assertEquals(makeInput(input).totalPrice(), 8500);
         assertEquals(makeInput(input2).totalPrice(), 142000);
-    }
-
-    private WootecoMenu makeMenu(String name, int count){
-        return new GenerateWootecoMenu(name, count).generateor();
     }
 
     @Test

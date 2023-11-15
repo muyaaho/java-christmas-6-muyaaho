@@ -10,6 +10,7 @@ public class InputView {
     public String getInput(){
         return Console.readLine();
     }
+
     public void introduce(){
         System.out.println(START_MESSAGE);
     }
