@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.GenerateBenefitStatus;
-import christmas.Controller.DiscountController;
 import christmas.Domain.GenerateOrderStatus;
 import christmas.Domain.Record.OrderStatus;
 import christmas.Domain.GenerateWootecoMenu;
@@ -52,12 +51,12 @@ public class GenerateBenefitStatusTest {
     }
 
     private BenefitStatus makeBenefit(OrderStatus orderStatus){
-        return new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
+        return new GenerateBenefitStatus(orderStatus).generate();
     }
 
     @Test
     void 이벤트_없음(){
-        BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput), new DiscountController()).generate();
+        BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput)).generate();
         List<WootecoMenu> orderedItems2 = List.of(
                 makeMenu("시저샐러드", 1)
         );

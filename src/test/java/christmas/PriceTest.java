@@ -49,7 +49,7 @@ public class PriceTest {
                 makeMenu("제로콜라", 1));
         List<WootecoMenu> input2 = Arrays.asList(makeMenu("타파스", 1), makeMenu("제로콜라", 1));
 
-        assertTrue(makeInput(input1).canGift());
-        assertFalse(makeInput(input2).canGift());
+        assertEquals(makeInput(input1).getGiftDiscount(),25_000);
+        assertEquals(makeInput(input2).getGiftDiscount(), 0);
     }
 }

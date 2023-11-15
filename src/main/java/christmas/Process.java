@@ -3,7 +3,6 @@ package christmas;
 import christmas.Controller.Input.FoodsController;
 import christmas.Controller.Input.Validate;
 import christmas.Domain.GenerateBenefitStatus;
-import christmas.Controller.DiscountController;
 import christmas.Controller.Input.DayController;
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.GenerateOrderStatus;
@@ -27,7 +26,7 @@ public class Process {
     public void run(){
         inputView.introduce();
         OrderStatus orderStatus = getOrderStatus();
-        BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus, new DiscountController()).generate();
+        BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus).generate();
         printResult(orderStatus, benefitStatus);
     }
 

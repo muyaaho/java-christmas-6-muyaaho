@@ -2,7 +2,6 @@ package christmas.Domain;
 
 import static christmas.Domain.Enum.Badge.*;
 
-import christmas.Controller.DiscountController;
 import christmas.Domain.Record.BenefitStatus;
 import christmas.Domain.Record.OrderStatus;
 import java.util.HashMap;
@@ -17,12 +16,10 @@ public class GenerateBenefitStatus {
     private static final String GIFT_BENEFIT = "증정 이벤트";
     private static final int MINIMUM_TOTAL_PAY = 10_000;
     private static final int GIFT_BENEFIT_COST = 25_000;
-    private final DiscountController discountController;
     private final OrderStatus orderStatus;
 
-    public GenerateBenefitStatus(OrderStatus orderStatus, DiscountController discountController) {
+    public GenerateBenefitStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
-        this.discountController = discountController;
     }
 
     public BenefitStatus generate(){
@@ -40,11 +37,11 @@ public class GenerateBenefitStatus {
         if (price < MINIMUM_TOTAL_PAY){
             return menus;
         }
-        menus.put(CHRISTMAS_BENEFIT, discountController.getX_masDiscount(orderStatus.day()));
-        menus.put(WEEKDAY_BENEFIT, discountController.getWeekdayDiscount(orderStatus));
-        menus.put(WEEKEND_BENEFIT, discountController.getWeekendDiscount(orderStatus));
-        menus.put(SPECIAL_BENEFIT, discountController.getSpecialDiscount(orderStatus.day()));
-        menus.put(GIFT_BENEFIT, discountController.getGiftDiscount(orderStatus));
+        menus.put(CHRISTMAS_BENEFIT, orderStatus.getX_masDiscount());
+        menus.put(WEEKDAY_BENEFIT, orderStatus.getWeekdayDiscount());
+        menus.put(WEEKEND_BENEFIT, orderStatus.getWeekendDiscount());
+        menus.put(SPECIAL_BENEFIT, orderStatus.getSpecialDiscount());
+        menus.put(GIFT_BENEFIT, orderStatus.getGiftDiscount());
         return menus;
     }
 
@@ -55,7 +52,7 @@ public class GenerateBenefitStatus {
 
     private int getFinalCost(OrderStatus orderStatus){
         int totalPrice = orderStatus.totalPrice();
-        if (discountController.getGiftDiscount(orderStatus) < GIFT_BENEFIT_COST){
+        if (orderStatus.getGiftDiscount() < GIFT_BENEFIT_COST){
             return totalPrice - getTotalBenefit(orderStatus);
         }
         return totalPrice - getTotalBenefit(orderStatus) + GIFT_BENEFIT_COST;

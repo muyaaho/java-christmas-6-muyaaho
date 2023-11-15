@@ -9,6 +9,7 @@ public class OutputController {
     private static final String NONE = "없음";
     private static final String GIFT = "샴페인 1개";
     private static final String WON = "원";
+
     public String moneyFormat(int price){
         return String.format("%,d", price)+WON;
     }
@@ -21,7 +22,7 @@ public class OutputController {
     }
 
     public String giftFormat(OrderStatus o){
-        if (o.canGift()){
+        if (o.getGiftDiscount()>0){
             return GIFT;
         }
         return NONE;
