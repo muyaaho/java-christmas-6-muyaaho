@@ -3,6 +3,7 @@ package christmas.Controller.Input;
 import static java.lang.Integer.parseInt;
 
 import christmas.Domain.Enum.MenuBoard;
+import christmas.Exception.DrinkException;
 import christmas.Exception.MenuException;
 import java.util.List;
 import java.util.Set;
@@ -72,7 +73,7 @@ public class Validate {
             return MenuBoard.getCategory(dividedHyphen[0]);
         }).filter(s -> s.equals("DRINK")).count();
         if (drinkCount == dividedCommaList.size()){
-            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요");
+            throw new DrinkException();
         }
     }
 }

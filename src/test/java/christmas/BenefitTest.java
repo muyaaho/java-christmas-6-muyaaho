@@ -14,7 +14,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class GenerateBenefitStatusTest {
+public class BenefitTest {
     List<WootecoMenu> noBenefitInput;
     List<WootecoMenu> yesBenefitInput;
     @BeforeEach
