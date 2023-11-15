@@ -3,7 +3,6 @@ package christmas.Controller;
 import static java.lang.Integer.parseInt;
 
 import christmas.Domain.Enum.MenuBoard;
-import christmas.Exception.DrinkException;
 import christmas.Exception.MenuException;
 import java.util.List;
 import java.util.Set;
@@ -73,7 +72,7 @@ public class Validate {
             return MenuBoard.getCategory(dividedHyphen[0]);
         }).filter(s -> s.equals("DRINK")).count();
         if (drinkCount == dividedCommaList.size()){
-            throw new DrinkException();
+            throw new MenuException();
         }
     }
 }
