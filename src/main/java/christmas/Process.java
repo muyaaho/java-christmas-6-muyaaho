@@ -28,6 +28,7 @@ public class Process {
         OrderStatus orderStatus = getOrderStatus();
         BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus).generate();
         printResult(orderStatus, benefitStatus);
+        inputView.closeScanner();
     }
 
     private void printResult(OrderStatus orderStatus, BenefitStatus benefitStatus){

@@ -23,4 +23,8 @@ public class InputView {
         System.out.println(FOOD_INPUT_MESSAGE);
     }
 
+    public void closeScanner(){
+        Console.close();
+    }
+
 }
