@@ -20,7 +20,7 @@ public class Validate {
         }
     }
 
-    public void hypen(String[] dividedHyphen){
+    public void hyphen(String[] dividedHyphen){
         if (dividedHyphen.length != 2){
             throw new MenuException();
         }

@@ -9,17 +9,16 @@ import java.util.List;
 
 
 public class FoodsController {
-    private static final String FIRST_SEP = ",";
-    private static final String SECOND_SEP = "-";
-    // 외부에서 재할당 될 가능성이 없으므로 private final로 하는 것이 좋을 것 같음!(static을 붙이느냐 아니니냐는 외부에 선언되는지 아닌지)
-    Validate validate;
+    private final String FIRST_SEP = ",";
+    private final String SECOND_SEP = "-";
+    private final Validate validate;
 
     public FoodsController(Validate validate) {
         this.validate = validate;
     }
 
     public List<WootecoMenu> setOrderedMenu(String line){
-        List<String> dividedCommaList = seperateComma(line);
+        List<String> dividedCommaList = separateComma(line);
         return dividedCommaList.stream().map(this::inputToWootechMenu).toList();
     }
 
@@ -28,17 +27,15 @@ public class FoodsController {
         return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
     }
 
-    private List<String> seperateComma(String inputLine){
+    private List<String> separateComma(String inputLine){
         List<String> dividedCommaList = Arrays.asList(inputLine.split(FIRST_SEP, -1));
         return allValidate(dividedCommaList);
     }
 
     private List<String> allValidate(List<String> dividedCommaList){
-        dividedCommaList.forEach(s -> {
-            // 여기도 s대신에 foodName이라던지
-            String[] dividedHyphen = s.split(SECOND_SEP);
-            validate.hypen(dividedHyphen);
-            // 오타 hyphen
+        dividedCommaList.forEach(foodNameAndCount -> {
+            String[] dividedHyphen = foodNameAndCount.split(SECOND_SEP);
+            validate.hyphen(dividedHyphen);
             validate.number(dividedHyphen);
             validate.elementBlank(dividedHyphen);
             validate.inMenu(dividedHyphen);
