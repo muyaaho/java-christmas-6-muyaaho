@@ -39,7 +39,7 @@ public class OutputController {
     }
 
     public String benefitListFormat(BenefitStatus benefitStatus) {
-        if (isTotalBenefitPositice(benefitStatus)) {
+        if (isTotalBenefitPositive(benefitStatus)) {
             return benefitStatus.benefitList().entrySet().stream()
                     .filter(this::isPositive)
                     .map(this::getBenefitToString)
@@ -48,7 +48,7 @@ public class OutputController {
         return NONE;
     }
 
-    private boolean isTotalBenefitPositice(BenefitStatus benefitStatus) {
+    private boolean isTotalBenefitPositive(BenefitStatus benefitStatus) {
         return benefitStatus.totalBenefit() > 0;
     }
 
