@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.controller.FoodsController;
-import christmas.controller.Validate;
+import christmas.controller.Validator;
 import christmas.domain.GenerateBenefitStatus;
 import christmas.controller.DayController;
 import christmas.domain.Record.BenefitStatus;
@@ -16,8 +16,8 @@ public class Process {
 
     InputView inputView;
     OutputView outputView;
-    Validate validate;
-    public Process(InputView inputView, OutputView outputView, Validate validate){
+    Validator validate;
+    public Process(InputView inputView, OutputView outputView, Validator validate){
         this.inputView = inputView;
         this.outputView = outputView;
         this.validate = validate;

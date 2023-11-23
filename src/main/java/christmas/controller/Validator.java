@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Validate {
+public class Validator {
 
     private static final String DIVIDED = "-";
     private static final int TOTAL_COUNT = 20;

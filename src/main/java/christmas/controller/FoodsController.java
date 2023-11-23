@@ -11,9 +11,9 @@ import java.util.List;
 public class FoodsController {
     private final String FIRST_SEP = ",";
     private final String SECOND_SEP = "-";
-    private final Validate validate;
+    private final Validator validate;
 
-    public FoodsController(Validate validate) {
+    public FoodsController(Validator validate) {
         this.validate = validate;
     }
 
