@@ -1,8 +1,8 @@
-package christmas.Domain;
+package christmas.domain;
 
 
-import christmas.Domain.Enum.MenuBoard;
-import christmas.Domain.Record.WootecoMenu;
+import christmas.domain.Enum.MenuBoard;
+import christmas.domain.Record.WootecoMenu;
 
 public class GenerateWootecoMenu {
 

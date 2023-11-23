@@ -1,9 +1,9 @@
-package christmas.Controller;
+package christmas.controller;
 
 import static java.lang.Integer.parseInt;
 
-import christmas.Domain.Enum.MenuBoard;
-import christmas.Exception.MenuException;
+import christmas.domain.Enum.MenuBoard;
+import christmas.exception.MenuException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

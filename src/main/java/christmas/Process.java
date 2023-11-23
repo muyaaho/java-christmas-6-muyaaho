@@ -1,15 +1,15 @@
 package christmas;
 
-import christmas.Controller.FoodsController;
-import christmas.Controller.Validate;
-import christmas.Domain.GenerateBenefitStatus;
-import christmas.Controller.DayController;
-import christmas.Domain.Record.BenefitStatus;
-import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.Record.OrderStatus;
-import christmas.Domain.Record.WootecoMenu;
-import christmas.View.InputView;
-import christmas.View.OutputView;
+import christmas.controller.FoodsController;
+import christmas.controller.Validate;
+import christmas.domain.GenerateBenefitStatus;
+import christmas.controller.DayController;
+import christmas.domain.Record.BenefitStatus;
+import christmas.domain.GenerateOrderStatus;
+import christmas.domain.Record.OrderStatus;
+import christmas.domain.Record.WootecoMenu;
+import christmas.view.InputView;
+import christmas.view.OutputView;
 import java.util.List;
 
 public class Process {

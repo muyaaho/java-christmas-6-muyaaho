@@ -1,4 +1,4 @@
-package christmas.View;
+package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 

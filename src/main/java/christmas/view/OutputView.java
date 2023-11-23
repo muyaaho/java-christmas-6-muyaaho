@@ -1,10 +1,10 @@
-package christmas.View;
+package christmas.view;
 
-import static christmas.View.OutputMessage.*;
+import static christmas.view.OutputMessage.*;
 
-import christmas.Controller.OutputController;
-import christmas.Domain.Record.BenefitStatus;
-import christmas.Domain.Record.OrderStatus;
+import christmas.controller.OutputController;
+import christmas.domain.Record.BenefitStatus;
+import christmas.domain.Record.OrderStatus;
 
 public class OutputView {
     private final OutputController outputController = new OutputController();

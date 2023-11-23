@@ -1,4 +1,4 @@
-package christmas.Domain.Enum;
+package christmas.domain.Enum;
 
 public enum Badge {
 

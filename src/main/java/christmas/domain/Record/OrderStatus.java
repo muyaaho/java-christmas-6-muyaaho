@@ -1,4 +1,4 @@
-package christmas.Domain.Record;
+package christmas.domain.Record;
 
 import java.util.Arrays;
 import java.util.List;

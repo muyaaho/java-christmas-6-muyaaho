@@ -4,9 +4,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.Controller.FoodsController;
-import christmas.Controller.Validate;
-import christmas.Domain.GenerateWootecoMenu;
+import christmas.controller.FoodsController;
+import christmas.controller.Validate;
+import christmas.domain.GenerateWootecoMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

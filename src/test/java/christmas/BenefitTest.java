@@ -2,12 +2,12 @@ package christmas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import christmas.Domain.Record.BenefitStatus;
-import christmas.Domain.GenerateBenefitStatus;
-import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.Record.OrderStatus;
-import christmas.Domain.GenerateWootecoMenu;
-import christmas.Domain.Record.WootecoMenu;
+import christmas.domain.Record.BenefitStatus;
+import christmas.domain.GenerateBenefitStatus;
+import christmas.domain.GenerateOrderStatus;
+import christmas.domain.Record.OrderStatus;
+import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.Record.WootecoMenu;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

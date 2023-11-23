@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import christmas.Domain.GenerateOrderStatus;
-import christmas.Domain.Enum.MenuBoard;
-import christmas.Domain.Record.OrderStatus;
-import christmas.Domain.GenerateWootecoMenu;
-import christmas.Domain.Record.WootecoMenu;
+import christmas.domain.GenerateOrderStatus;
+import christmas.domain.Enum.MenuBoard;
+import christmas.domain.Record.OrderStatus;
+import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.Record.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;

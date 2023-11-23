@@ -1,4 +1,4 @@
-package christmas.Exception;
+package christmas.exception;
 
 public class MenuException extends IllegalArgumentException{
     public MenuException(){

@@ -1,8 +1,8 @@
 package christmas;
 
-import christmas.Controller.Validate;
-import christmas.View.InputView;
-import christmas.View.OutputView;
+import christmas.controller.Validate;
+import christmas.view.InputView;
+import christmas.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {

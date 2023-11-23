@@ -1,9 +1,9 @@
-package christmas.Domain;
+package christmas.domain;
 
-import static christmas.Domain.Enum.Badge.*;
+import static christmas.domain.Enum.Badge.*;
 
-import christmas.Domain.Record.BenefitStatus;
-import christmas.Domain.Record.OrderStatus;
+import christmas.domain.Record.BenefitStatus;
+import christmas.domain.Record.OrderStatus;
 import java.util.HashMap;
 import java.util.Map;
 
