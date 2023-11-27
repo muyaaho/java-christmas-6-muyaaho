@@ -43,7 +43,7 @@ public class FoodsController {
             validate.zero(dividedHyphen);
         });
         validate.blank(dividedCommaList);
-        validate.duplicated(dividedCommaList);
+        validate.duplicate(dividedCommaList);
         validate.foodCount(dividedCommaList);
         validate.onlyDrink(dividedCommaList);
         return dividedCommaList;

@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 
 import christmas.domain.Enum.MenuBoard;
 import christmas.exception.MenuException;
+import java.awt.Menu;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,35 +62,60 @@ public class Validator {
         return dividedHyphen[1].equals("0");
     }
 
-    public void blank(List<String> divitedCommaList) {
-        // TODO: validator는 여기서부터 시작
-        int blankCount = (int) divitedCommaList.stream().filter(String::isBlank).count();
-        if (blankCount > 0) {
+    public void blank(List<String> dividedComma) {
+        if (isBlank(dividedComma)) {
             throw new MenuException();
         }
     }
 
-    public void duplicated(List<String> dividedCommaList) {
-        int cnt = dividedCommaList.stream().map(e -> e.split(DELIMITER)[0]).collect(Collectors.toSet()).size();
-        if (cnt != dividedCommaList.size()) {
+    private boolean isBlank(List<String> dividedComma){
+        int blankCount = (int) dividedComma.stream()
+                .filter(String::isBlank)
+                .count();
+        return blankCount > 0;
+    }
+
+    public void duplicate(List<String> dividedComma) {
+        if (isDifferentSize(dividedComma)) {
             throw new MenuException();
         }
     }
 
-    public void foodCount(List<String> dividedCommaList) {
-        int cnt = dividedCommaList.stream().map(e -> e.split(DELIMITER)[1]).mapToInt(Integer::parseInt).sum();
-        if (cnt > TOTAL_COUNT) {
+    private boolean isDifferentSize(List<String> dividedComma){
+        long cnt = dividedComma.stream()
+                .map(element -> element.split(DELIMITER)[0])
+                .distinct()
+                .count();
+        return cnt != dividedComma.size();
+    }
+
+
+    public void foodCount(List<String> dividedComma) {
+        if (isOverLimit(dividedComma)) {
             throw new MenuException();
         }
+    }
+
+    private boolean isOverLimit(List<String> dividedComma) {
+        int cnt = dividedComma.stream()
+                .map(e -> e.split(DELIMITER)[1])
+                .mapToInt(Integer::parseInt)
+                .sum();
+        return cnt > TOTAL_COUNT;
     }
 
     public void onlyDrink(List<String> dividedCommaList) {
-        int drinkCount = (int) dividedCommaList.stream().map(s -> {
-            String[] dividedHyphen = s.split(DELIMITER);
-            return MenuBoard.getCategory(dividedHyphen[0]);
-        }).filter(s -> s.equals("DRINK")).count();
+        int drinkCount = (int) getfoodName(dividedCommaList)
+                .filter(MenuBoard::isDrink)
+                .count();
+
         if (drinkCount == dividedCommaList.size()) {
             throw new MenuException();
         }
+    }
+
+    private Stream<String> getfoodName(List<String> dividedComma) {
+        return dividedComma.stream()
+                .map(element -> element.split(DELIMITER)[0]);
     }
 }

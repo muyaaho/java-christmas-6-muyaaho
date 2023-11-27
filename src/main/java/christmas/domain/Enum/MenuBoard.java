@@ -1,6 +1,7 @@
 package christmas.domain.Enum;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public enum MenuBoard {
@@ -40,4 +41,9 @@ public enum MenuBoard {
         return Objects.requireNonNull(
                 Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).category;
     }
+
+    public static boolean isDrink(String foodName) {
+        return getCategory(foodName).equals("DRINK");
+    }
+
 }
