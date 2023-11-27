@@ -34,6 +34,7 @@ public class FoodsController {
 
     private List<String> allValidate(List<String> dividedCommaList){
         dividedCommaList.forEach(foodNameAndCount -> {
+            // TODO: 나누는 것도 validate 안에서 하는 건 어떨까
             String[] dividedHyphen = foodNameAndCount.split(SECOND_SEP);
             validate.hyphen(dividedHyphen);
             validate.number(dividedHyphen);
