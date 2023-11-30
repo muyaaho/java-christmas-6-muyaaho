@@ -31,16 +31,16 @@ public class GenerateBenefitStatus {
 
 
     private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
-        Map<String, Integer> menus = new HashMap<>();
         if (orderStatus.totalPrice() < MINIMUM_TOTAL_PAY){
             return Collections.emptyMap();
         }
-        menus.put(CHRISTMAS_BENEFIT, orderStatus.getX_masDiscount());
-        menus.put(WEEKDAY_BENEFIT, orderStatus.getWeekdayDiscount());
-        menus.put(WEEKEND_BENEFIT, orderStatus.getWeekendDiscount());
-        menus.put(SPECIAL_BENEFIT, orderStatus.getSpecialDiscount());
-        menus.put(GIFT_BENEFIT, orderStatus.getGiftDiscount());
-        return menus;
+        return Map.of(
+                CHRISTMAS_BENEFIT, orderStatus.getX_masDiscount(),
+                WEEKDAY_BENEFIT, orderStatus.getWeekdayDiscount(),
+                WEEKEND_BENEFIT, orderStatus.getWeekendDiscount(),
+                SPECIAL_BENEFIT, orderStatus.getSpecialDiscount(),
+                GIFT_BENEFIT, orderStatus.getGiftDiscount()
+                );
     }
 
     private int getTotalBenefit(OrderStatus orderStatus){
