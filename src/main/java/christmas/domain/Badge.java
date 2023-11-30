@@ -15,11 +15,11 @@ public enum Badge {
         this.badge = badge;
     }
 
-    public int getPay() {
-        return price;
-    }
-
     public String getBadge() {
         return badge;
+    }
+
+    public boolean canGetBadge(int benefit) {
+        return benefit >= price;
     }
 }

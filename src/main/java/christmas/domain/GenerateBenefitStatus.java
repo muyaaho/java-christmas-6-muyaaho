@@ -25,8 +25,8 @@ public class GenerateBenefitStatus {
         Map<String, Integer> benefitList = getBenefitList(orderStatus);
         int totalBenefit = getTotalBenefit(orderStatus);
         int finalPrice = getFinalCost(orderStatus);
-        String badge = getBadge(orderStatus);
-        return new BenefitStatus(benefitList, totalBenefit, finalPrice, badge);
+        Badge badge = getBadge(orderStatus);
+        return new BenefitStatus(benefitList, totalBenefit, finalPrice, badge.getBadge());
     }
 
 
@@ -57,18 +57,18 @@ public class GenerateBenefitStatus {
 
     }
 
-    private String getBadge(OrderStatus orderStatus){
+    private Badge getBadge(OrderStatus orderStatus){
         int benefit = getTotalBenefit(orderStatus);
-        if (benefit >= SANTA.getPay()){
-            return SANTA.getBadge();
+        if (SANTA.canGetBadge(benefit)){
+            return SANTA;
         }
-        else if (benefit >= TREE.getPay()){
-            return TREE.getBadge();
+        if (TREE.canGetBadge(benefit)){
+            return TREE;
         }
-        else if (benefit >= STAR.getPay()){
-            return STAR.getBadge();
+        if (STAR.canGetBadge(benefit)){
+            return STAR;
         }
-        return NONE.getBadge();
+        return NONE;
     }
 
 }
