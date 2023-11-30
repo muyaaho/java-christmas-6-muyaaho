@@ -104,14 +104,16 @@ public class Validator {
         return cnt > TOTAL_COUNT;
     }
 
-    public void onlyDrink(List<String> dividedCommaList) {
-        int drinkCount = (int) getfoodName(dividedCommaList)
-                .filter(MenuBoard::isDrink)
-                .count();
-
-        if (drinkCount == dividedCommaList.size()) {
+    public void onlyDrink(List<String> dividedComma) {
+        if (getDrinkCount(dividedComma) == dividedComma.size()) {
             throw new MenuException();
         }
+    }
+
+    private int getDrinkCount (List<String> dividedComma) {
+        return (int) getfoodName(dividedComma)
+                .filter(MenuBoard::isDrink)
+                .count();
     }
 
     private Stream<String> getfoodName(List<String> dividedComma) {
