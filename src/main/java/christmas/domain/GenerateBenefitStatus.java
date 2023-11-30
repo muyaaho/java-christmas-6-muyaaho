@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static christmas.domain.Badge.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +32,8 @@ public class GenerateBenefitStatus {
 
     private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         Map<String, Integer> menus = new HashMap<>();
-        int price = orderStatus.totalPrice();
-        if (price < MINIMUM_TOTAL_PAY){
-            return menus;
+        if (orderStatus.totalPrice() < MINIMUM_TOTAL_PAY){
+            return Collections.emptyMap();
         }
         menus.put(CHRISTMAS_BENEFIT, orderStatus.getX_masDiscount());
         menus.put(WEEKDAY_BENEFIT, orderStatus.getWeekdayDiscount());
