@@ -57,7 +57,7 @@ public class OutputController {
     }
 
     public String foodListFormat(OrderStatus orderStatus) {
-        return orderStatus.foodList().stream()
+        return orderStatus.foods().stream()
                 .map(WootecoMenu::toString)
                 .collect(Collectors.joining("\n"));
     }

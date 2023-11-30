@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import christmas.domain.OrderStatusFactory;
 import christmas.domain.MenuBoard;
 import christmas.domain.OrderStatus;
 import christmas.domain.WootecoMenuFactory;
@@ -16,8 +15,7 @@ import org.junit.jupiter.api.Test;
 public class PriceTest {
 
     private OrderStatus makeInput(List<WootecoMenu> orderItems){
-        OrderStatusFactory orderStatusFactory = new OrderStatusFactory(0, orderItems);
-        return orderStatusFactory.generate();
+        return new OrderStatus(0, orderItems);
     }
 
     private WootecoMenu makeMenu(String name, int count){
@@ -32,8 +30,8 @@ public class PriceTest {
                 makeMenu("초코케이크", 2),
                 makeMenu("제로콜라", 1));
 
-        assertEquals(makeInput(input).totalPrice(), 8500);
-        assertEquals(makeInput(input2).totalPrice(), 142000);
+        assertEquals(makeInput(input).getTotalPrice(), 8500);
+        assertEquals(makeInput(input2).getTotalPrice(), 142000);
     }
 
     @Test

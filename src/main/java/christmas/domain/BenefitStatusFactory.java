@@ -30,7 +30,7 @@ public class BenefitStatusFactory {
 
 
     private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
-        if (orderStatus.totalPrice() < MINIMUM_TOTAL_PAY){
+        if (orderStatus.getTotalPrice() < MINIMUM_TOTAL_PAY){
             return Collections.emptyMap();
         }
         return Map.of(
@@ -48,7 +48,7 @@ public class BenefitStatusFactory {
     }
 
     private int getFinalCost(OrderStatus orderStatus){
-        int totalPrice = orderStatus.totalPrice();
+        int totalPrice = orderStatus.getTotalPrice();
         if (orderStatus.getGiftDiscount() < GIFT_BENEFIT_COST){
             return totalPrice - getTotalBenefit(orderStatus);
         }

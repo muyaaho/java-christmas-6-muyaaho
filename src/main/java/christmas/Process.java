@@ -5,7 +5,6 @@ import christmas.controller.Validator;
 import christmas.domain.BenefitStatusFactory;
 import christmas.controller.DayController;
 import christmas.domain.BenefitStatus;
-import christmas.domain.OrderStatusFactory;
 import christmas.domain.OrderStatus;
 import christmas.domain.WootecoMenu;
 import christmas.view.InputView;
@@ -45,7 +44,7 @@ public class Process {
     private OrderStatus getOrderStatus(){
         int day = getDay(new DayController());
         List<WootecoMenu> foods = getFoods(new FoodsController(validate));
-        return new OrderStatusFactory(day, foods).generate();
+        return new OrderStatus(day, foods);
     }
 
     private int getDay(DayController dayController){

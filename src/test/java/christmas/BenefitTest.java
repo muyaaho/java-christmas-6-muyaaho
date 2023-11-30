@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import christmas.domain.BenefitStatusFactory;
-import christmas.domain.OrderStatusFactory;
 import christmas.domain.WootecoMenuFactory;
 import christmas.domain.BenefitStatus;
 import christmas.domain.OrderStatus;
@@ -48,7 +47,7 @@ public class BenefitTest {
     }
 
     private OrderStatus makeOrder(int day, List<WootecoMenu> input){
-        return new OrderStatusFactory(day, input).generate();
+        return new OrderStatus(day, input);
     }
 
     private BenefitStatus makeBenefit(OrderStatus orderStatus){

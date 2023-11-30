@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     public void printBeforeDiscount(OrderStatus orderStatus){
-        printTopic(BEFORE_DISCOUNT.getMessage(), outputController.moneyFormat(orderStatus.totalPrice()));
+        printTopic(BEFORE_DISCOUNT.getMessage(), outputController.moneyFormat(orderStatus.getTotalPrice()));
     }
 
     public void printGift(OrderStatus orderStatus){
