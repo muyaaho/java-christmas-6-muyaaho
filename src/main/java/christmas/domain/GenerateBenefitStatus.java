@@ -59,14 +59,14 @@ public class GenerateBenefitStatus {
 
     private String getBadge(OrderStatus orderStatus){
         int benefit = getTotalBenefit(orderStatus);
-        if (benefit >= MORE_20000.getPay()){
-            return MORE_20000.getBadge();
+        if (benefit >= SANTA.getPay()){
+            return SANTA.getBadge();
         }
-        else if (benefit >= MORE_10000.getPay()){
-            return MORE_10000.getBadge();
+        else if (benefit >= TREE.getPay()){
+            return TREE.getBadge();
         }
-        else if (benefit >= MORE_5000.getPay()){
-            return MORE_5000.getBadge();
+        else if (benefit >= STAR.getPay()){
+            return STAR.getBadge();
         }
         return NONE.getBadge();
     }
