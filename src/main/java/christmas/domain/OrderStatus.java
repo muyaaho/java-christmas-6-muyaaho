@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.domain.FoodCategory.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,14 +56,14 @@ public record OrderStatus(int day, List<WootecoMenu> foodList, int totalPrice) {
     }
 
     private int getDessertDiscount(WootecoMenu food){
-        if (food.category().equals("DESSERT")){
+        if (food.category().equals(DESSERT)){
             return WEEKDAY_DISCOUNT * food.count();
         }
         return 0;
     }
 
     private int getMainDiscount(WootecoMenu food){
-        if (food.category().equals("MAIN")){
+        if (food.category().equals(MAIN)){
             return WEEKDAY_DISCOUNT*food.count();
         }
         return 0;

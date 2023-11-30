@@ -15,7 +15,7 @@ public class GenerateWootecoMenu {
         return new WootecoMenu(name, count, getCategory(name));
     }
 
-    private String getCategory(String name){
+    private FoodCategory getCategory(String name){
         return MenuBoard.getCategory(name);
     }
 
