@@ -2,7 +2,7 @@ package christmas.controller;
 
 import static java.lang.Integer.parseInt;
 
-import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.WootecoMenuFactory;
 import christmas.domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class FoodsController {
 
     private WootecoMenu inputToWootechMenu(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split(SECOND_SEP);
-        return new GenerateWootecoMenu(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
+        return new WootecoMenuFactory(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
     }
 
     private List<String> separateComma(String inputLine){

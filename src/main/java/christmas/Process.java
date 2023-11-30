@@ -2,10 +2,10 @@ package christmas;
 
 import christmas.controller.FoodsController;
 import christmas.controller.Validator;
-import christmas.domain.GenerateBenefitStatus;
+import christmas.domain.BenefitStatusFactory;
 import christmas.controller.DayController;
 import christmas.domain.BenefitStatus;
-import christmas.domain.GenerateOrderStatus;
+import christmas.domain.OrderStatusFactory;
 import christmas.domain.OrderStatus;
 import christmas.domain.WootecoMenu;
 import christmas.view.InputView;
@@ -26,7 +26,7 @@ public class Process {
     public void run(){
         inputView.introduce();
         OrderStatus orderStatus = getOrderStatus();
-        BenefitStatus benefitStatus = new GenerateBenefitStatus(orderStatus).generate();
+        BenefitStatus benefitStatus = new BenefitStatusFactory(orderStatus).generate();
         printResult(orderStatus, benefitStatus);
         inputView.closeScanner();
     }
@@ -45,7 +45,7 @@ public class Process {
     private OrderStatus getOrderStatus(){
         int day = getDay(new DayController());
         List<WootecoMenu> foods = getFoods(new FoodsController(validate));
-        return new GenerateOrderStatus(day, foods).generate();
+        return new OrderStatusFactory(day, foods).generate();
     }
 
     private int getDay(DayController dayController){

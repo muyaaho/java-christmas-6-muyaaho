@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import christmas.domain.GenerateOrderStatus;
+import christmas.domain.OrderStatusFactory;
 import christmas.domain.MenuBoard;
 import christmas.domain.OrderStatus;
-import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.WootecoMenuFactory;
 import christmas.domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 public class PriceTest {
 
     private OrderStatus makeInput(List<WootecoMenu> orderItems){
-        GenerateOrderStatus generateOrderStatus = new GenerateOrderStatus(0, orderItems);
-        return generateOrderStatus.generate();
+        OrderStatusFactory orderStatusFactory = new OrderStatusFactory(0, orderItems);
+        return orderStatusFactory.generate();
     }
 
     private WootecoMenu makeMenu(String name, int count){
-        return new GenerateWootecoMenu(name, count).generateor();
+        return new WootecoMenuFactory(name, count).generateor();
     }
 
     @Test

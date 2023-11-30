@@ -3,9 +3,9 @@ package christmas;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-import christmas.domain.GenerateBenefitStatus;
-import christmas.domain.GenerateOrderStatus;
-import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.BenefitStatusFactory;
+import christmas.domain.OrderStatusFactory;
+import christmas.domain.WootecoMenuFactory;
 import christmas.domain.BenefitStatus;
 import christmas.domain.OrderStatus;
 import christmas.domain.WootecoMenu;
@@ -34,7 +34,7 @@ public class BenefitTest {
     }
 
     private WootecoMenu makeMenu(String name, int count){
-        return new GenerateWootecoMenu(name, count).generateor();
+        return new WootecoMenuFactory(name, count).generateor();
     }
 
     private Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){
@@ -48,16 +48,16 @@ public class BenefitTest {
     }
 
     private OrderStatus makeOrder(int day, List<WootecoMenu> input){
-        return new GenerateOrderStatus(day, input).generate();
+        return new OrderStatusFactory(day, input).generate();
     }
 
     private BenefitStatus makeBenefit(OrderStatus orderStatus){
-        return new GenerateBenefitStatus(orderStatus).generate();
+        return new BenefitStatusFactory(orderStatus).generate();
     }
 
     @Test
     void 이벤트_없음(){
-        BenefitStatus benefitStatus = new GenerateBenefitStatus(makeOrder(26, noBenefitInput)).generate();
+        BenefitStatus benefitStatus = new BenefitStatusFactory(makeOrder(26, noBenefitInput)).generate();
         List<WootecoMenu> orderedItems2 = List.of(
                 makeMenu("시저샐러드", 1)
         );

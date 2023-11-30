@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.controller.FoodsController;
 import christmas.controller.Validator;
-import christmas.domain.GenerateWootecoMenu;
+import christmas.domain.WootecoMenuFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,8 @@ public class InputTest {
 
     @Test
     void 우테코메뉴에서_string(){
-        assertEquals(new GenerateWootecoMenu("타파스", 1).generateor().toString(), "타파스 1개");
-        assertEquals(new GenerateWootecoMenu("제로콜라", 1).generateor().toString(), "제로콜라 1개");
+        assertEquals(new WootecoMenuFactory("타파스", 1).generateor().toString(), "타파스 1개");
+        assertEquals(new WootecoMenuFactory("제로콜라", 1).generateor().toString(), "제로콜라 1개");
     }
 
     @Test

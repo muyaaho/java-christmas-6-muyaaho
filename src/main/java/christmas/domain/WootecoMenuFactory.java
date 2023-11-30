@@ -1,12 +1,12 @@
 package christmas.domain;
 
 
-public class GenerateWootecoMenu {
+public class WootecoMenuFactory {
 
     private final int count;
     private final String name;
 
-    public GenerateWootecoMenu(String name, int count) {
+    public WootecoMenuFactory(String name, int count) {
         this.name = name;
         this.count = count;
     }

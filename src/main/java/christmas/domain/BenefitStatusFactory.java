@@ -3,10 +3,9 @@ package christmas.domain;
 import static christmas.domain.Badge.*;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
-public class GenerateBenefitStatus {
+public class BenefitStatusFactory {
 
     private static final String CHRISTMAS_BENEFIT = "크리스마스 디데이 할인";
     private static final String WEEKDAY_BENEFIT = "평일 할인";
@@ -17,7 +16,7 @@ public class GenerateBenefitStatus {
     private static final int GIFT_BENEFIT_COST = 25_000;
     private final OrderStatus orderStatus;
 
-    public GenerateBenefitStatus(OrderStatus orderStatus) {
+    public BenefitStatusFactory(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 

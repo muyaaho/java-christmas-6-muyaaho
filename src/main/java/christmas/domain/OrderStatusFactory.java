@@ -3,12 +3,12 @@ package christmas.domain;
 
 import java.util.List;
 
-public class GenerateOrderStatus {
+public class OrderStatusFactory {
     private final int day;
     private final List<WootecoMenu> foods;
     private final int totalPrice;
 
-    public GenerateOrderStatus(int day, List<WootecoMenu> foods) {
+    public OrderStatusFactory(int day, List<WootecoMenu> foods) {
         this.day = day;
         this.foods = foods;
         this.totalPrice = totalPriceBeforeDiscount();
