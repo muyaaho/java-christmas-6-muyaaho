@@ -11,7 +11,7 @@ public class WootecoMenuFactory {
         this.count = count;
     }
 
-    public WootecoMenu generateor(){
+    public WootecoMenu generator(){
         return new WootecoMenu(name, count, getCategory(name));
     }
 

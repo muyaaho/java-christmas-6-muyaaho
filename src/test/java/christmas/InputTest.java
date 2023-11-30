@@ -23,8 +23,8 @@ public class InputTest {
 
     @Test
     void 우테코메뉴에서_string(){
-        assertEquals(new WootecoMenuFactory("타파스", 1).generateor().toString(), "타파스 1개");
-        assertEquals(new WootecoMenuFactory("제로콜라", 1).generateor().toString(), "제로콜라 1개");
+        assertEquals(new WootecoMenuFactory("타파스", 1).generator().toString(), "타파스 1개");
+        assertEquals(new WootecoMenuFactory("제로콜라", 1).generator().toString(), "제로콜라 1개");
     }
 
     @Test

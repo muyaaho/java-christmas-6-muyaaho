@@ -24,7 +24,7 @@ public class FoodsController {
 
     private WootecoMenu inputToWootechMenu(String inputDividedComma){
         String[] dividedHyphen = inputDividedComma.split(SECOND_SEP);
-        return new WootecoMenuFactory(dividedHyphen[0], parseInt(dividedHyphen[1])).generateor();
+        return new WootecoMenuFactory(dividedHyphen[0], parseInt(dividedHyphen[1])).generator();
     }
 
     private List<String> separateComma(String inputLine){

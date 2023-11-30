@@ -33,7 +33,7 @@ public class BenefitTest {
     }
 
     private WootecoMenu makeMenu(String name, int count){
-        return new WootecoMenuFactory(name, count).generateor();
+        return new WootecoMenuFactory(name, count).generator();
     }
 
     private Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){

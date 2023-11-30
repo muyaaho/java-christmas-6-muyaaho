@@ -19,7 +19,7 @@ public class PriceTest {
     }
 
     private WootecoMenu makeMenu(String name, int count){
-        return new WootecoMenuFactory(name, count).generateor();
+        return new WootecoMenuFactory(name, count).generator();
     }
 
     @Test
