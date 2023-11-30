@@ -1,9 +1,6 @@
 package christmas.domain;
 
 
-import christmas.domain.Enum.MenuBoard;
-import christmas.domain.Record.WootecoMenu;
-
 public class GenerateWootecoMenu {
 
     private final int count;

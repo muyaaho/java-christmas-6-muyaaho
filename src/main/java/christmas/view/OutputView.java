@@ -3,8 +3,8 @@ package christmas.view;
 import static christmas.view.OutputMessage.*;
 
 import christmas.controller.OutputController;
-import christmas.domain.Record.BenefitStatus;
-import christmas.domain.Record.OrderStatus;
+import christmas.domain.BenefitStatus;
+import christmas.domain.OrderStatus;
 
 public class OutputView {
     private final OutputController outputController = new OutputController();

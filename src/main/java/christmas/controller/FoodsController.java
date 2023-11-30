@@ -3,7 +3,7 @@ package christmas.controller;
 import static java.lang.Integer.parseInt;
 
 import christmas.domain.GenerateWootecoMenu;
-import christmas.domain.Record.WootecoMenu;
+import christmas.domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package christmas.domain.Record;
+package christmas.domain;
 
 public record WootecoMenu(String name, int count, String category) {
     @Override

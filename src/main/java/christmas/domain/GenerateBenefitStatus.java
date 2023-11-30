@@ -1,9 +1,7 @@
 package christmas.domain;
 
-import static christmas.domain.Enum.Badge.*;
+import static christmas.domain.Badge.*;
 
-import christmas.domain.Record.BenefitStatus;
-import christmas.domain.Record.OrderStatus;
 import java.util.HashMap;
 import java.util.Map;
 

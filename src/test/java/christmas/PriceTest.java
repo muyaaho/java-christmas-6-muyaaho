@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import christmas.domain.GenerateOrderStatus;
-import christmas.domain.Enum.MenuBoard;
-import christmas.domain.Record.OrderStatus;
+import christmas.domain.MenuBoard;
+import christmas.domain.OrderStatus;
 import christmas.domain.GenerateWootecoMenu;
-import christmas.domain.Record.WootecoMenu;
+import christmas.domain.WootecoMenu;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;

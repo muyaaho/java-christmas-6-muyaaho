@@ -1,4 +1,4 @@
-package christmas.domain.Record;
+package christmas.domain;
 
 import java.util.Map;
 

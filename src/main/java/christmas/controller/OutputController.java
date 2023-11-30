@@ -1,8 +1,8 @@
 package christmas.controller;
 
-import christmas.domain.Record.BenefitStatus;
-import christmas.domain.Record.OrderStatus;
-import christmas.domain.Record.WootecoMenu;
+import christmas.domain.BenefitStatus;
+import christmas.domain.OrderStatus;
+import christmas.domain.WootecoMenu;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 

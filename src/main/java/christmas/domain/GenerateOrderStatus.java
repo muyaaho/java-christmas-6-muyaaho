@@ -1,9 +1,6 @@
 package christmas.domain;
 
 
-import christmas.domain.Enum.MenuBoard;
-import christmas.domain.Record.OrderStatus;
-import christmas.domain.Record.WootecoMenu;
 import java.util.List;
 
 public class GenerateOrderStatus {
