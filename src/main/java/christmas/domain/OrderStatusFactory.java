@@ -19,11 +19,13 @@ public class OrderStatusFactory {
     }
 
     private int totalPriceBeforeDiscount(){
-        int totalPrice = 0;
-        for(WootecoMenu food: foods){
-            totalPrice += (MenuBoard.getPrice(food.name()) * food.count());
-        }
-        return totalPrice;
+        return foods.stream()
+                .mapToInt(this::getMenuPrice)
+                .sum();
+    }
+
+    private int getMenuPrice(WootecoMenu food) {
+        return MenuBoard.getPrice(food.name()) * food.count();
     }
 
 }
