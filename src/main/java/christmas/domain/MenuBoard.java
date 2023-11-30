@@ -38,9 +38,9 @@ public enum MenuBoard {
                 Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).price;
     }
 
-    public static FoodCategory getCategory(String food_name){
+    public static FoodCategory getCategory(String foodName){
         return Objects.requireNonNull(
-                Arrays.stream(values()).filter(menu -> menu.name.equals(food_name)).findAny().orElse(null)).category;
+                Arrays.stream(values()).filter(menu -> menu.name.equals(foodName)).findAny().orElse(null)).category;
     }
 
     public static boolean isDrink(String foodName) {
