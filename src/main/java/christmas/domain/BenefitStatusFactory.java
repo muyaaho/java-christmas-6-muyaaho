@@ -34,7 +34,7 @@ public class BenefitStatusFactory {
             return Collections.emptyMap();
         }
         return Map.of(
-                CHRISTMAS_BENEFIT, orderStatus.getX_masDiscount(),
+                CHRISTMAS_BENEFIT, orderStatus.getChristmasDiscount(),
                 WEEKDAY_BENEFIT, orderStatus.getWeekdayDiscount(),
                 WEEKEND_BENEFIT, orderStatus.getWeekendDiscount(),
                 SPECIAL_BENEFIT, orderStatus.getSpecialDiscount(),

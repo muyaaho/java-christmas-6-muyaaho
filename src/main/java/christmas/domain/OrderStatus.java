@@ -43,7 +43,7 @@ public record OrderStatus(int day, List<WootecoMenu> foods) {
         return discountAmount;
     }
 
-    public int getX_masDiscount(){
+    public int getChristmasDiscount(){
         if (day < OVER_CHRISTMAS_EVENT){
             return CHRISTMAS_EVENT_START + (day-1)*CHRISTMAS_EVENT_UNIT;
         }
