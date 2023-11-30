@@ -7,4 +7,5 @@ public enum FoodCategory {
     DESSERT,
     DRINK;
 
+
 }
