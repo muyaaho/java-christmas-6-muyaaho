@@ -2,6 +2,8 @@ package christmas.domain;
 
 import static christmas.domain.FoodCategory.*;
 
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum MenuBoard {
@@ -49,6 +51,12 @@ public enum MenuBoard {
 
     public static boolean isDrink(String foodName) {
         return getCategory(foodName).equals(DRINK);
+    }
+
+    public static Set<String> getFoodNames() {
+        return Stream.of(MenuBoard.values())
+                .map(MenuBoard::getName)
+                .collect(Collectors.toSet());
     }
 
 }

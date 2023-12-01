@@ -13,8 +13,8 @@ public class Validator {
 
     private static final String DELIMITER = "-";
     private static final int TOTAL_COUNT = 20;
-    private final Set<String> foodList = Stream.of(MenuBoard.values()).map(MenuBoard::getName)
-            .collect(Collectors.toSet());
+
+    private final Set<String> foodList = MenuBoard.getFoodNames();
 
     public void elementBlank(String[] dividedHyphen) {
         if (hasValue(dividedHyphen)) {
