@@ -14,13 +14,9 @@ public class BenefitStatusFactory {
     private static final String GIFT_BENEFIT = "증정 이벤트";
     private static final int MINIMUM_TOTAL_PAY = 10_000;
     private static final int GIFT_BENEFIT_COST = 25_000;
-    private final OrderStatus orderStatus;
 
-    public BenefitStatusFactory(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 
-    public BenefitStatus generate(){
+    public static BenefitStatus generate(OrderStatus orderStatus){
         Map<String, Integer> benefitList = getBenefitList(orderStatus);
         int totalBenefit = getTotalBenefit(orderStatus);
         int finalPrice = getFinalCost(orderStatus);
@@ -29,7 +25,7 @@ public class BenefitStatusFactory {
     }
 
 
-    private Map<String, Integer> getBenefitList(OrderStatus orderStatus){
+    private static Map<String, Integer> getBenefitList(OrderStatus orderStatus){
         if (orderStatus.getTotalPrice() < MINIMUM_TOTAL_PAY){
             return Collections.emptyMap();
         }
@@ -42,12 +38,12 @@ public class BenefitStatusFactory {
                 );
     }
 
-    private int getTotalBenefit(OrderStatus orderStatus){
+    private static int getTotalBenefit(OrderStatus orderStatus){
         Map<String, Integer> menus = getBenefitList(orderStatus);
         return menus.values().stream().mapToInt(i->i).sum();
     }
 
-    private int getFinalCost(OrderStatus orderStatus){
+    private static int getFinalCost(OrderStatus orderStatus){
         int totalPrice = orderStatus.getTotalPrice();
         if (orderStatus.getGiftDiscount() < GIFT_BENEFIT_COST){
             return totalPrice - getTotalBenefit(orderStatus);
@@ -56,7 +52,7 @@ public class BenefitStatusFactory {
 
     }
 
-    private Badge getBadge(OrderStatus orderStatus){
+    private static Badge getBadge(OrderStatus orderStatus){
         int benefit = getTotalBenefit(orderStatus);
         if (SANTA.canGetBadge(benefit)){
             return SANTA;

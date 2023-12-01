@@ -24,7 +24,7 @@ public class Process {
     public void run(){
         inputView.introduce();
         OrderStatus orderStatus = getOrderStatus();
-        BenefitStatus benefitStatus = new BenefitStatusFactory(orderStatus).generate();
+        BenefitStatus benefitStatus = BenefitStatusFactory.generate(orderStatus);
         printResult(orderStatus, benefitStatus);
         inputView.closeScanner();
     }

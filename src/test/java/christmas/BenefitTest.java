@@ -51,12 +51,12 @@ public class BenefitTest {
     }
 
     private BenefitStatus makeBenefit(OrderStatus orderStatus){
-        return new BenefitStatusFactory(orderStatus).generate();
+        return BenefitStatusFactory.generate(orderStatus);
     }
 
     @Test
     void 이벤트_없음(){
-        BenefitStatus benefitStatus = new BenefitStatusFactory(makeOrder(26, noBenefitInput)).generate();
+        BenefitStatus benefitStatus = BenefitStatusFactory.generate(makeOrder(26, noBenefitInput));
         List<WootecoMenu> orderedItems2 = List.of(
                 makeMenu("시저샐러드", 1)
         );
