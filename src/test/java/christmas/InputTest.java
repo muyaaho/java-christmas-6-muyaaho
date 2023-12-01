@@ -17,9 +17,7 @@ public class InputTest {
     void setUp(){
         foodsController = new FoodsController(new Validator());
     }
-    private void assertMakeObj(String inputLine){
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> foodsController.setOrderedMenu(inputLine));
-    }
+
 
     @Test
     void 우테코메뉴에서_string(){
@@ -93,6 +91,10 @@ public class InputTest {
     @Test
     void 음식_갯수에_0이_들어온_경우(){
         assertMakeObj("티본스테이크-0");
+    }
+
+    private void assertMakeObj(String inputLine){
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> foodsController.setOrderedMenu(inputLine));
     }
 
 }

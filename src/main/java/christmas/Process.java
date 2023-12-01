@@ -15,6 +15,7 @@ public class Process {
     private final InputView inputView;
     private final OutputView outputView;
     private final Validator validate;
+
     public Process(InputView inputView, OutputView outputView, Validator validate){
         this.inputView = inputView;
         this.outputView = outputView;

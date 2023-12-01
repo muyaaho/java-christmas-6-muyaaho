@@ -42,13 +42,6 @@ public enum MenuBoard {
         return findMenuBoard(foodName).category;
     }
 
-    private static MenuBoard findMenuBoard(String foodName) {
-        return Stream.of(values())
-                .filter(menu -> menu.name.equals(foodName))
-                .findAny()
-                .orElseThrow();
-    }
-
     public static boolean isDrink(String foodName) {
         return getCategory(foodName).equals(DRINK);
     }
@@ -57,6 +50,13 @@ public enum MenuBoard {
         return Stream.of(MenuBoard.values())
                 .map(MenuBoard::getName)
                 .collect(Collectors.toSet());
+    }
+
+    private static MenuBoard findMenuBoard(String foodName) {
+        return Stream.of(values())
+                .filter(menu -> menu.name.equals(foodName))
+                .findAny()
+                .orElseThrow();
     }
 
 }

@@ -15,20 +15,20 @@ public class DayController {
         return convertDay;
     }
 
-    private void validateRange(int day){
+    private void validateRange(int day) {
         if (isEventDay(day)) {
             throw new DayException();
         }
     }
 
-    private boolean isEventDay(int day){
+    private boolean isEventDay(int day) {
         return day < DEC_START || day > DEC_END;
     }
 
-    private void validateNumber(String day){
-        try{
+    private void validateNumber(String day) {
+        try {
             parseInt(day);
-        } catch(NumberFormatException numberFormatException){
+        } catch (NumberFormatException numberFormatException) {
             throw new DayException();
         }
     }

@@ -23,19 +23,11 @@ public class OutputController {
         return NONE;
     }
 
-    private boolean isNonZero(int price) {
-        return price > 0;
-    }
-
     public String giftFormat(OrderStatus orderStatus) {
         if (isEligibleForGiftDiscount(orderStatus)) {
             return GIFT;
         }
         return NONE;
-    }
-
-    private boolean isEligibleForGiftDiscount(OrderStatus orderStatus) {
-        return orderStatus.getGiftDiscount() > 0;
     }
 
     public String benefitListFormat(BenefitStatus benefitStatus) {
@@ -48,18 +40,26 @@ public class OutputController {
         return NONE;
     }
 
+    public String foodListFormat(OrderStatus orderStatus) {
+        return orderStatus.foods().stream()
+                .map(WootecoMenu::toString)
+                .collect(Collectors.joining("\n"));
+    }
+
+    private boolean isNonZero(int price) {
+        return price > 0;
+    }
+
+    private boolean isEligibleForGiftDiscount(OrderStatus orderStatus) {
+        return orderStatus.getGiftDiscount() > 0;
+    }
+
     private boolean isTotalBenefitPositive(BenefitStatus benefitStatus) {
         return benefitStatus.totalBenefit() > 0;
     }
 
     private boolean isPositive(Entry<String, Integer> benefit) {
         return benefit.getValue() > 0;
-    }
-
-    public String foodListFormat(OrderStatus orderStatus) {
-        return orderStatus.foods().stream()
-                .map(WootecoMenu::toString)
-                .collect(Collectors.joining("\n"));
     }
 
     private String getBenefitToString(Entry<String, Integer> benefit) {

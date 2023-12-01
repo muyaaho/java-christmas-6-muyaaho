@@ -67,17 +67,29 @@ public class Validator {
         }
     }
 
+    public void duplicate(List<String> dividedComma) {
+        if (isDifferentSize(dividedComma)) {
+            throw new MenuException();
+        }
+    }
+
+    public void foodCount(List<String> dividedComma) {
+        if (isOverLimit(dividedComma)) {
+            throw new MenuException();
+        }
+    }
+
+    public void onlyDrink(List<String> dividedComma) {
+        if (getDrinkCount(dividedComma) == dividedComma.size()) {
+            throw new MenuException();
+        }
+    }
+
     private boolean isBlank(List<String> dividedComma){
         int blankCount = (int) dividedComma.stream()
                 .filter(String::isBlank)
                 .count();
         return blankCount > 0;
-    }
-
-    public void duplicate(List<String> dividedComma) {
-        if (isDifferentSize(dividedComma)) {
-            throw new MenuException();
-        }
     }
 
     private boolean isDifferentSize(List<String> dividedComma){
@@ -88,25 +100,12 @@ public class Validator {
         return cnt != dividedComma.size();
     }
 
-
-    public void foodCount(List<String> dividedComma) {
-        if (isOverLimit(dividedComma)) {
-            throw new MenuException();
-        }
-    }
-
     private boolean isOverLimit(List<String> dividedComma) {
         int cnt = dividedComma.stream()
                 .map(e -> e.split(DELIMITER)[1])
                 .mapToInt(Integer::parseInt)
                 .sum();
         return cnt > TOTAL_COUNT;
-    }
-
-    public void onlyDrink(List<String> dividedComma) {
-        if (getDrinkCount(dividedComma) == dividedComma.size()) {
-            throw new MenuException();
-        }
     }
 
     private int getDrinkCount (List<String> dividedComma) {

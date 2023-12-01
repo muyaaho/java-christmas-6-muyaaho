@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 public class BenefitTest {
     List<WootecoMenu> noBenefitInput;
     List<WootecoMenu> yesBenefitInput;
+
     @BeforeEach
     void setUp(){
 
@@ -32,27 +33,6 @@ public class BenefitTest {
         );
     }
 
-    private WootecoMenu makeMenu(String name, int count){
-        return new WootecoMenuFactory(name, count).generator();
-    }
-
-    private Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){
-        Map<String, Integer> output = new HashMap<>();
-        output.put("크리스마스 디데이 할인", christMas);
-        output.put("평일 할인", weekday);
-        output.put("주말 할인", weekend);
-        output.put("특별 할인", special);
-        output.put("증정 이벤트", gift);
-        return output;
-    }
-
-    private OrderStatus makeOrder(int day, List<WootecoMenu> input){
-        return new OrderStatus(day, input);
-    }
-
-    private BenefitStatus makeBenefit(OrderStatus orderStatus){
-        return BenefitStatusFactory.generate(orderStatus);
-    }
 
     @Test
     void 이벤트_없음(){
@@ -137,5 +117,27 @@ public class BenefitTest {
     void 이벤트_배지_있음(){
         assertEquals(makeBenefit(makeOrder(3, yesBenefitInput)).badge(), "산타");
 
+    }
+
+    private WootecoMenu makeMenu(String name, int count){
+        return new WootecoMenuFactory(name, count).generator();
+    }
+
+    private Map<String, Integer> makeOutput(int christMas, int weekday, int weekend, int special, int gift){
+        Map<String, Integer> output = new HashMap<>();
+        output.put("크리스마스 디데이 할인", christMas);
+        output.put("평일 할인", weekday);
+        output.put("주말 할인", weekend);
+        output.put("특별 할인", special);
+        output.put("증정 이벤트", gift);
+        return output;
+    }
+
+    private OrderStatus makeOrder(int day, List<WootecoMenu> input){
+        return new OrderStatus(day, input);
+    }
+
+    private BenefitStatus makeBenefit(OrderStatus orderStatus){
+        return BenefitStatusFactory.generate(orderStatus);
     }
 }
